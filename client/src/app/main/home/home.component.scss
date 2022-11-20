@@ -1,0 +1,31 @@
+main {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+}
+.img {
+      width: 40%;
+}
+img {
+      width: 90%;
+}
+h1, h2 {
+      color: #6038af;
+}
+h1 {
+      font-size: 40px;
+      margin-bottom: 30px;
+      font-weight: 500;
+}
+h2 {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 500;
+      font-size: 50px;
+}
+
+.title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}

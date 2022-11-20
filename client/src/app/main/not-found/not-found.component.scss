@@ -1,0 +1,19 @@
+img {
+      width: 25%;
+    }
+
+    main > h1 {
+      font-size: 44px;
+      font-weight: 600;
+      width: 50%;
+      line-height: 50px;
+      text-align: center;
+      margin: 0;
+      color: #6038af
+    }
+
+    main {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+    }
