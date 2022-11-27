@@ -24,5 +24,7 @@ namespace API.Entities
         public string? AuthorLastName { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public string? ImageUrl { get; set; }
     }
 }

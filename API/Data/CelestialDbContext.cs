@@ -10,5 +10,6 @@ namespace API.Data
                 this.Database.Migrate();
             }
             public DbSet<Article> Articles { get; set; }
+            public DbSet<User> Users { get; set; }
       }
 }
