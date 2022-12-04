@@ -1,0 +1,20 @@
+<main>
+  <h1>Login</h1>
+  <form [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required>
+      </mat-form-field>
+      <mat-form-field hintLabel="Min 6 characters">
+        <mat-label>Password</mat-label>
+        <input matInput minLength="6" required [type]="hide ? 'password' : 'text'" formControlName="password"
+          name="password" type="password">
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <!-- <mat-hint align="end">{{password.value?.length || 0}}/6</mat-hint> -->
+      </mat-form-field>
+      <button mat-raised-button class="button-purple" type="submit">Login</button>
+  </form>
+</main>
