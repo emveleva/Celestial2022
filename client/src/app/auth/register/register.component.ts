@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from '../../models/user.model'
 
 @Component({
   selector: 'app-register',
@@ -31,36 +30,29 @@ export class RegisterComponent implements OnInit {
         username: [''],
         password: [''],
         email: ['',
-          Validators.required,
-          Validators.pattern(/^[a-zA-Z\s]+$/),
-        ],
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+          [Validators.required
+        ]],
+        firstName: ['', [Validators.required]],
+        lastName: ['', [Validators.required]],
         imageUrl: ['',
-          Validators.pattern(
+      [Validators.pattern(
             /https?:\/\/(www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&\/\/=]*)/gm
-        )]})
+        )]]})
     }
 
   onSubmit(){
-    // if (user.password !== user.rePassword){
-    //   // this.notificationsService.error("The passwords you entered don't match.")
-    // } else if (user.password.length < 6){
-    //   // this.notificationsService.error("Your password should contain at least 6 characters.")
-    // }else {
-    // const { email, password } = user;
-    // const hiredDevs: [] = [];
-    // this.authService.register(email, password ).subscribe({
-    //   next: (res: any) => {
-    //     this.auth = res['accessToken'];
-    //     localStorage.setItem('token', this.auth);
-    //     this.token = res['accessToken']
-    //     this.router.navigate(['/'])
-    //   },
-    //   error: (res: HttpErrorResponse) => {
-    //     // this.notificationsService.error(res.error)
-    //   }
-    // });
-  // }
-}
+      const user = this.form.value;
+    this.authService.register(user).subscribe({
+      next: (res: any) => {
+        this.auth = res['token'];
+        localStorage.setItem('token', this.auth);
+        this.token = res['token']
+        this.router.navigate(['/'])
+      },
+      error: (res: HttpErrorResponse) => {
+        // this.notificationsService.error(res.error)
+      }
+    });
+  }
+
 }

@@ -3,10 +3,13 @@
             <section class="logo">
                   <a routerLink="/" routerLinkActive="active"><img src="../../../assets/logo.png" alt=""></a>
             </section>
-            <section class="menu">
+            <section class="menu" *ngIf="!authService.isAuthenticated()">
                   <span><a routerLink="/auth/register" routerLinkActive="active">Register</a></span>
                   <span><a routerLink="/auth/login" routerLinkActive="active">Login</a></span>  
-                  <span><a routerLink="/articles/" routerLinkActive="active">Articles</a></span> 
+            </section>
+            <section class="menu" *ngIf="authService.isAuthenticated()">
+                  <span><a routerLink="/articles" routerLinkActive="active">Articles</a></span>
+                  <span><a [routerLink]="" (click)="logoutClick()">Logout</a></span>
             </section>
       </nav>
 </mat-toolbar>
