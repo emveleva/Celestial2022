@@ -13,18 +13,22 @@ namespace API.Entities
 
         [Required]
         [MaxLength(TitleMaxLength)]
-        public string? Title { get; set; }
+        public string Title { get; set; }
 
         [Required]
         [MaxLength(AuthorFirstMaxLength)]
-        public string? AuthorFirstName { get; set; }
+        public string AuthorFirstName { get; set; }
 
         [Required]
         [MaxLength(AuthorLastMaxLength)]
-        public string? AuthorLastName { get; set; }
+        public string AuthorLastName { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
-        public string? ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
+
+        public int AppUserId { get; set; }
+
+        public AppUser AppUser { get; set; }
     }
 }
