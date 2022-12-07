@@ -25,10 +25,10 @@ export class AuthService {
   token!: string | null;
   constructor(private http: HttpClient, private router: Router) {}
 
-  getUserData() {
+  getUserData(): any {
     const token: any = localStorage.getItem('token');
     const userInfo = this.jwtHelper.decodeToken(token);
-    return userInfo.sub;
+    return userInfo;
   }
 
   public isAuthenticated(): boolean {
