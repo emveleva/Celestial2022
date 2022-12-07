@@ -23,12 +23,12 @@ namespace API.Entities
         [MaxLength(AuthorLastMaxLength)]
         public string AuthorLastName { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public string Body { get; set; }
+
+        public DateTime CreatedOn { get; set; } = DateTime.Now;
 
         public string ImageUrl { get; set; }
 
         public int AppUserId { get; set; }
-
-        public AppUser AppUser { get; set; }
     }
 }
