@@ -1,0 +1,37 @@
+<main>
+      <h1>Add New Article</h1>
+      <form [formGroup]="form" class="normal-form" (submit)="onSubmit()">
+        <section class="fields">
+        <div class="left">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input formControlName="title" matInput required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Author First Name</mat-label>
+          <input formControlName="authorFirstName" matInput >
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Author Last Name</mat-label>
+            <input formControlName="authorLastName" matInput >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Image Url</mat-label>
+            <input formControlName="imageUrl" matInput required>
+          </mat-form-field>
+        </div>
+        <div class="right">
+            <mat-form-field>
+                  <mat-label>Body</mat-label>
+                  <textarea rows="15"  matInput formControlName="body"
+                    placeholder="Type what you think in here..."></textarea>
+                </mat-form-field>
+        </div>
+      </section>
+          
+        <div class="buttons">
+          <button mat-raised-button class="button-purple" type="submit">Confirm</button>
+          <button mat-raised-button class="button-red" type="button">Cancel</button>
+        </div>
+      </form>
+  </main>

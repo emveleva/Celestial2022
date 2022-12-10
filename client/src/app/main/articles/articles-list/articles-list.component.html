@@ -1,8 +1,11 @@
 <main>
       <div class="articles-list">
             <h1>Articles</h1>
-            <app-article></app-article>
-            <app-article></app-article>
-            <app-article></app-article>
+            <button>
+                  <a routerLink="/articles/add" routerLinkActive="active">Add Article</a>
+            </button>
+            <div *ngFor="let article of articles">
+                  <app-article [article]="article"></app-article>
+            </div>
       </div>
 </main>

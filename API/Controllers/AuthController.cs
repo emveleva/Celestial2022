@@ -29,7 +29,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-       [HttpPost("register")]
+    [HttpPost("register")]
     public async Task<ActionResult<LoggedUserDto>> Register(RegisterDto registerDto)
     {
         if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
