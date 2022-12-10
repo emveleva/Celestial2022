@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\Desktop\\projects\\Celestial2022\\API\\API.csproj": {}
+    "C:\\Users\\User\\Desktop\\projects\\Celestial2022\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\Desktop\\projects\\Celestial2022\\API\\API.csproj": {
+    "C:\\Users\\User\\Desktop\\projects\\Celestial2022\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\projects\\Celestial2022\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\projects\\Celestial2022\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\ASUS\\Desktop\\projects\\Celestial2022\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\Desktop\\projects\\Celestial2022\\API\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\projects\\Celestial2022\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\projects\\Celestial2022\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,7 +87,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -99,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

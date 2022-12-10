@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-       public class CelestialDbContext : IdentityDbContext<AppUser, AppRole, int,
-        IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>,
-        IdentityRoleClaim<int>, IdentityUserToken<int>>
+       public class CelestialDbContext : IdentityDbContext<AppUser, AppRole, string,
+        IdentityUserClaim<string>, AppUserRole, IdentityUserLogin<string>,
+        IdentityRoleClaim<string>, IdentityUserToken<string>>
     
       {
             public CelestialDbContext(DbContextOptions<CelestialDbContext> options) : base(options)
@@ -22,20 +22,23 @@ namespace API.Data
            
              protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-                modelBuilder.Entity<AppUser>()
-                .HasMany(ur => ur.UserRoles)
-                .WithOne(u => u.User)
+             modelBuilder.Entity<AppUser>(b =>
+        {
+            // Each User can have many entries in the UserRole join table
+            b.HasMany(e => e.UserRoles)
+                .WithOne(e => e.User)
                 .HasForeignKey(ur => ur.UserId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
+                .IsRequired();
+        });
 
-            modelBuilder.Entity<AppRole>()
-                .HasMany(ur => ur.UserRoles)
-                .WithOne(u => u.Role)
+        modelBuilder.Entity<AppRole>(b =>
+        {
+            // Each Role can have many entries in the UserRole join table
+            b.HasMany(e => e.UserRoles)
+                .WithOne(e => e.Role)
                 .HasForeignKey(ur => ur.RoleId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
-
+                .IsRequired();
+        });
             base.OnModelCreating(modelBuilder);
         }
       }

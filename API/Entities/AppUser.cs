@@ -5,7 +5,7 @@ using static API.Data.DataConstants.User;
 
 namespace API.Entities
 {
-      public class AppUser : IdentityUser<int>
+      public class AppUser : IdentityUser
     {
 
         public string FirstName { get; init; }
@@ -16,8 +16,7 @@ namespace API.Entities
 
         public DateTime Created { get; set; } = DateTime.Now;
 
-        public ICollection<AppUserRole> UserRoles { get; set; }
-
+        public virtual ICollection<AppUserRole> UserRoles { get; set; }
         public virtual ICollection<Article> Articles { get; set; }
     }
 }
