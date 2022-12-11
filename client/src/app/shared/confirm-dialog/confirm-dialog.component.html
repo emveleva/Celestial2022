@@ -1,0 +1,13 @@
+<mat-card class="container">
+
+    <h3 mat-dialog-title>{{data.title}}</h3>
+
+    <p >{{data.message}}</p>
+
+
+    <div >
+          <button mat-raised-button class="button-mint" (click)="onConfirm()">Yes</button>
+          <button mat-raised-button (click)="onDismiss()">No</button>
+    </div>
+
+</mat-card>
