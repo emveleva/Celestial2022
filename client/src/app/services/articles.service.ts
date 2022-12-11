@@ -18,21 +18,7 @@ export class ArticlesService {
             return this.http.get<Article[]>(`${this.articlesUrl}`);
       }
 
-      addArticle(article: Article) {
-            return this.http.post(`${this.articlesUrl}`, article, this.httpOptions)
-      }
-
-      editArticle(article: Article) {
-            return this.http.put(`${this.articlesUrl}${article.id}`, article, this.httpOptions);
-      }
-
-      deleteArticle(id: string): Observable<Article[]> {
-            return this.http.delete<Article[]>(`${this.articlesUrl}${id}`);
-      }
-
       getOneArticle(id: string):  Observable<Article>{
             return this.http.get<Article>(`${this.articlesUrl}${id}`)
       }
-
-      // getArticlesByUser
 }

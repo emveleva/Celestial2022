@@ -3,16 +3,28 @@ main{
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      min-height: 82.5%;
 }
+
+mat-card {
+      display: flex;;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 70%;
+      height: 78vh;
+}
+
 form {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
 }
 .fields {
       display: flex;
       flex-direction: row;
+      gap: 50px;
 }
 
 .left, .right {

@@ -1,17 +1,19 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/models/article.model';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { EditorService } from 'src/app/services/editor.service';
 
 @Component({
-  selector: 'app-add-article',
-  templateUrl: './add-article.component.html',
-  styleUrls: ['./add-article.component.scss'],
+  selector: 'app-edit-article',
+  templateUrl: './edit-article.component.html',
+  styleUrls: ['./edit-article.component.scss'],
 })
-export class AddArticleComponent implements OnInit {
-
+export class EditArticleComponent implements OnInit {
+  id!: string | null;
   allowCreateEdit: boolean = true;
   article!: any;
   articles: Article[];
@@ -23,11 +25,28 @@ export class AddArticleComponent implements OnInit {
   userId: number;
 
   constructor(
-    public articlesService: ArticlesService,
+    public editorService: EditorService,
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    public articlesService: ArticlesService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+    
   ) {
   }
+
+
+   getArticleDetails(){
+     this.id = this.activatedRoute.snapshot.params.id;
+     if (this.id){
+     this.editorService.getOneArticle(this.id).subscribe({
+       next: (res) => {
+         this.article = res
+         this.buildForm();
+       }
+     })
+   }
+   }
 
   getUserId(): any {
     const userData = this.authService.getUserData();
@@ -36,7 +55,7 @@ export class AddArticleComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      title: [this.article?.name, [
+      title: [this.article?.title, [
         Validators.required,
       ]],
       authorFirstName: 
@@ -54,7 +73,12 @@ export class AddArticleComponent implements OnInit {
 
   ngOnInit() {
     this.getUserId();
-    this.buildForm();
+    this.getArticleDetails();
+   
+  }
+
+  onBack() {
+    this.router.navigate([`editor/`])
   }
   
   onSubmit() {
@@ -63,20 +87,30 @@ export class AddArticleComponent implements OnInit {
     this.articlesService.getArticles$().subscribe({
       next: (res) => {
         this.articles = res;
-        this.title = this.form.get('name')?.value;
+        this.title = this.form.get('title')?.value;
         this.articleId = this.form.get('id')?.value;
         if (this.form.valid) {
           if (!this.form.get('id')?.value) {
+            console.log(this.articles.length)
             for (let i = 0; i < this.articles.length; i++) {
-              if (this.articles[i].title == this.title) {
+              console.log(this.articles[i].title)
+              console.log(this.title)
+              console.log(this.articles[i].title === this.form.get('title')?.value)
+              console.log(this.articles[i].title == this.form.get('title')?.value)
+
+              if (this.articles[i].title === this.form.get('title')?.value) {
+                console.log('Article with this name already exists.')
                 this.error = 'Article with this name already exists.';
                 this.allowCreateEdit = false;
                 break;
               }
             }
+            console.log(this.allowCreateEdit)
             if (this.allowCreateEdit) {
-              this.articlesService.addArticle(this.form.value).subscribe({
+              console.log('here')
+              this.editorService.addArticle(this.form.value).subscribe({
                 next: () => {
+                  console.log('new article added')
                   this.notification = 'New article added!'
                 },
                 error: (res: HttpErrorResponse) => {
@@ -87,7 +121,7 @@ export class AddArticleComponent implements OnInit {
             }
           } else {
             if (!this.form.pristine) {
-              this.articlesService.editArticle(this.form.value).subscribe({
+              this.editorService.editArticle(this.form.value).subscribe({
                 next: () => {
                   this.notification = 'Article edited!';
                 },
@@ -104,3 +138,4 @@ export class AddArticleComponent implements OnInit {
     });
   }
 }
+

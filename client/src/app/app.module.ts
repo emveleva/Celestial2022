@@ -8,6 +8,7 @@ import { NavigationComponent } from './partials/navigation/navigation.component'
 import { FooterComponent } from './partials/footer/footer.component';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule

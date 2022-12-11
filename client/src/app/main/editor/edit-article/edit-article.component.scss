@@ -1,0 +1,63 @@
+main{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 82.5%;
+}
+
+mat-card {
+      display: flex;;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 70%;
+      height: 78vh;
+}
+
+form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+}
+.fields {
+      display: flex;
+      flex-direction: row;
+      gap: 50px;
+}
+
+.left, .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+}
+
+button {
+      width: 44%;
+      margin: 5px;
+}
+.bot {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+}
+textarea {
+      max-height: 71px;
+      resize: none;
+    }
+    .error {
+          color: #fb6793;
+    }
+    .button-purple{
+      background-color: #a579fd;
+      color: white;
+}
+
+.button-red {
+      background-color: #fb6793;
+      color: white;
+}

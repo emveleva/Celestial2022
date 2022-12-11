@@ -1,5 +1,6 @@
 <main>
-      <h1>Add New Article</h1>
+  <mat-card>
+    <h1>Add New Article</h1>
       <form [formGroup]="form" class="normal-form" (submit)="onSubmit()">
         <section class="fields">
         <div class="left">
@@ -31,7 +32,8 @@
           
         <div class="buttons">
           <button mat-raised-button class="button-purple" type="submit">Confirm</button>
-          <button mat-raised-button class="button-red" type="button">Cancel</button>
+          <button mat-raised-button class="button-red" type="button" (click)="onBack()">Cancel</button>
         </div>
       </form>
+  </mat-card>
   </main>

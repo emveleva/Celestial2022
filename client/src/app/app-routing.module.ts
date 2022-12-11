@@ -13,6 +13,9 @@ const routes: Routes = [
   {
     path: 'articles', loadChildren: () => import('./main/articles/articles.module').then(m => m.ArticlesModule)
   },
+  {
+    path: 'editor', loadChildren: () => import('./main/editor/editor.module').then(m => m.EditorModule)
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
