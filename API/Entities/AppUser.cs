@@ -5,7 +5,7 @@ using static API.Data.DataConstants.User;
 
 namespace API.Entities
 {
-      public class AppUser : IdentityUser
+      public class AppUser : IdentityUser<int>
     {
 
         public string FirstName { get; init; }

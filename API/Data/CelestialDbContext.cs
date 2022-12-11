@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-       public class CelestialDbContext : IdentityDbContext<AppUser, AppRole, string,
-        IdentityUserClaim<string>, AppUserRole, IdentityUserLogin<string>,
-        IdentityRoleClaim<string>, IdentityUserToken<string>>
+       public class CelestialDbContext : IdentityDbContext<AppUser, AppRole, int,
+        IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>,
+        IdentityRoleClaim<int>, IdentityUserToken<int>>
     
       {
             public CelestialDbContext(DbContextOptions<CelestialDbContext> options) : base(options)
@@ -16,9 +16,6 @@ namespace API.Data
             }
 
             public DbSet<Article> Articles { get; set; }
-            public DbSet<AppUser> Users { get; set; }
-
-
            
              protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
