@@ -43,12 +43,6 @@ namespace API.Data
                 .HasKey(a => new { a.AppUserId, a.ArticleId });
 
             modelBuilder.Entity<LikedArticle>()
-                .HasOne(s => s.Article)
-                .WithMany(l => l.LikedByUsers)
-                .HasForeignKey(s => s.AppUserId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<LikedArticle>()
                 .HasOne(s => s.AppUser)
                 .WithMany(l => l.LikedArticles)
                 .HasForeignKey(s => s.ArticleId)

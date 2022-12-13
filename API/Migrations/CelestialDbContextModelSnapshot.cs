@@ -207,9 +207,14 @@ namespace API.Migrations
                     b.Property<int>("ArticleId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ArticleId1")
+                        .HasColumnType("int");
+
                     b.HasKey("AppUserId", "ArticleId");
 
                     b.HasIndex("ArticleId");
+
+                    b.HasIndex("ArticleId1");
 
                     b.ToTable("LikedArticles");
                 });
@@ -340,16 +345,16 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Entities.LikedArticle", b =>
                 {
-                    b.HasOne("API.Entities.Article", "Article")
-                        .WithMany("LikedByUsers")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("API.Entities.AppUser", "AppUser")
                         .WithMany("LikedArticles")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.Article", "Article")
+                        .WithMany()
+                        .HasForeignKey("ArticleId1")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");
@@ -405,11 +410,6 @@ namespace API.Migrations
                     b.Navigation("LikedArticles");
 
                     b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("API.Entities.Article", b =>
-                {
-                    b.Navigation("LikedByUsers");
                 });
 #pragma warning restore 612, 618
         }

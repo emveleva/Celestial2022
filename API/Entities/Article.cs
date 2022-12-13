@@ -32,7 +32,5 @@ namespace API.Entities
 
         public int AppUserId { get; set; }
 
-        public virtual ICollection<LikedArticle> LikedByUsers { get; set; }
-
     }
 }

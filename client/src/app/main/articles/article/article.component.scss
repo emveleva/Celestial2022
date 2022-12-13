@@ -1,16 +1,20 @@
-main h1 {
-      font-size: 44px;
-      padding: 7%;
-      font-weight: 600;
-      margin: 0 auto;
-}
-
 .article-container {
       display: flex;
       justify-content: center;
       flex-direction: column;
       margin: 10px;
-      // background-color: rgb(216, 135, 251);
 }
 
+.article-title {
+      color: #9990ff;
+      font-size: 28px;
+}
+
+.created-date {
+      color: #56ccc8;
+}
+
+.article-body {
+      color: #6f6f6f;
+}
  

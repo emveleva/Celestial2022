@@ -2,17 +2,16 @@ main {
       background-color: #e6d6ff;
 }
 
-.articles-list h1 {
+.title {
+      padding: 15px;
+      margin: 15px;
       font-size: 44px;
-      padding: 7%;
       font-weight: 600;
-      margin: 0 auto;
 }
 
 .articles-list {
       display: flex;;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       width: 70%;
       height: 100%;

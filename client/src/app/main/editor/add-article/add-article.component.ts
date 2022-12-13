@@ -68,25 +68,7 @@ export class AddArticleComponent implements OnInit {
   onSubmit() {
     this.error = '';
     this.notification = '';
-    this.articlesService.getArticles$().subscribe({
-      next: (res) => {
-        this.articles = res;
-        this.title = this.form.get('title')?.value;
-        this.articleId = this.form.get('id')?.value;
-        if (this.form.valid) {
-          if (!this.form.get('id')?.value) {
-            console.log(this.articles.length)
-            for (let i = 0; i < this.articles.length; i++) {
-              if (this.articles[i].title === this.form.get('title')?.value) {
-                console.log('Article with this name already exists.')
-                this.error = 'Article with this name already exists.';
-                this.allowCreateEdit = false;
-                break;
-              }
-            }
-            console.log(this.allowCreateEdit)
-            if (this.allowCreateEdit) {
-              console.log('here')
+    
               this.editorService.addArticle(this.form.value).subscribe({
                 next: () => {
                   console.log('new article added')
@@ -97,24 +79,5 @@ export class AddArticleComponent implements OnInit {
                   this.error = res.error;
                 },
               });
-            }
-          } else {
-            if (!this.form.pristine) {
-              this.editorService.editArticle(this.form.value).subscribe({
-                next: () => {
-                  this.notification = 'Article edited!';
-                },
-                error: (res: HttpErrorResponse) => {
-                  this.error = res.error;
-                },
-              });
-            } else {
-              this.error = 'No changes were detected.';
-            }
-          }
-        }
-      },
-    });
-  }
-}
+  }}
 
