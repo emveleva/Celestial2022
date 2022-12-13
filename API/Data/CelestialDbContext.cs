@@ -16,6 +16,8 @@ namespace API.Data
             }
 
             public DbSet<Article> Articles { get; set; }
+
+            public DbSet<LikedArticle> LikedArticles { get; set;}
            
              protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,6 +38,21 @@ namespace API.Data
                 .HasForeignKey(ur => ur.RoleId)
                 .IsRequired();
         });
+
+        modelBuilder.Entity<LikedArticle>()
+                .HasKey(a => new { a.AppUserId, a.ArticleId });
+
+            modelBuilder.Entity<LikedArticle>()
+                .HasOne(s => s.Article)
+                .WithMany(l => l.LikedByUsers)
+                .HasForeignKey(s => s.AppUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<LikedArticle>()
+                .HasOne(s => s.AppUser)
+                .WithMany(l => l.LikedArticles)
+                .HasForeignKey(s => s.ArticleId)
+                .OnDelete(DeleteBehavior.Restrict);
             base.OnModelCreating(modelBuilder);
         }
       }

@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
+using API.Entities;
+using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,51 +17,38 @@ namespace API.Controllers
    [Authorize]
     public class UsersController : BaseApiController
     {
-        private readonly IMapper _mapper;
-        // private readonly IUnitOfWork _unitOfWork;
-        public UsersController(IMapper mapper)
+       private readonly IArticleService articleService;
+
+        public UsersController(IArticleService _articleService)
         {
-            // _unitOfWork = unitOfWork;
-            // _photoService = photoService;
-            _mapper = mapper;
+            _articleService = articleService;
         }
 
-        // [HttpGet]
-        // public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
-        // {
-        //     var gender = await _unitOfWork.UserRepository.GetUserGender(User.GetUsername());
-        //     userParams.CurrentUsername = User.GetUsername();
+        [HttpPost("{userId}/liked")]
+        public async Task<ActionResult> AddToLiked(int articleId, int userId)
+        {
 
-        //     if (string.IsNullOrEmpty(userParams.Gender))
-        //         userParams.Gender = gender == "male" ? "female" : "male";
+            await articleService.AddToLiked(articleId, userId);
+            
+            return Ok();
+        }
 
-        //     var users = await _unitOfWork.UserRepository.GetMembersAsync(userParams);
+        [HttpGet("{id}/liked")]
 
-        //     Response.AddPaginationHeader(users.CurrentPage, users.PageSize,
-        //         users.TotalCount, users.TotalPages);
+        public async Task<ActionResult<IEnumerable<Article>>> GetLikedArticles(int id)
+        {
+            var articles = await articleService.GetLikedArticles(id);
 
-        //     return Ok(users);
-        // }
+            return Ok(articles);
+        }
 
-        // [HttpGet("{username}", Name = "GetUser")]
-        // public async Task<ActionResult<MemberDto>> GetUser(string username)
-        // {
-        //     return await _unitOfWork.UserRepository.GetMemberAsync(username);
-        // }
+        [HttpDelete("{id}/liked/{articleId}")]
 
-        // [HttpPut]
-        // public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
-        // {
+        public async Task<ActionResult> RemoveFromLiked(int articleId, int id)
+        {
+            await articleService.RemoveFromLiked(articleId, id);
 
-        //     var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
-
-        //     _mapper.Map(memberUpdateDto, user);
-
-        //     _unitOfWork.UserRepository.Update(user);
-
-        //     if (await _unitOfWork.Complete()) return NoContent();
-
-        //     return BadRequest("Failed to update user");
-        // }
+            return Ok();
+        }
     }
 }

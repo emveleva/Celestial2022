@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(CelestialDbContext))]
-    [Migration("20221210231049_addTables")]
-    partial class addTables
+    [Migration("20221213021719_createdTables")]
+    partial class createdTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -202,6 +202,21 @@ namespace API.Migrations
                     b.ToTable("Articles");
                 });
 
+            modelBuilder.Entity("API.Entities.LikedArticle", b =>
+                {
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AppUserId", "ArticleId");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("LikedArticles");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -319,13 +334,30 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Entities.Article", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", "AppUser")
+                    b.HasOne("API.Entities.AppUser", null)
                         .WithMany("Articles")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("API.Entities.LikedArticle", b =>
+                {
+                    b.HasOne("API.Entities.Article", "Article")
+                        .WithMany("LikedByUsers")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppUser", "AppUser")
+                        .WithMany("LikedArticles")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
+
+                    b.Navigation("Article");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -373,7 +405,14 @@ namespace API.Migrations
                 {
                     b.Navigation("Articles");
 
+                    b.Navigation("LikedArticles");
+
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("API.Entities.Article", b =>
+                {
+                    b.Navigation("LikedByUsers");
                 });
 #pragma warning restore 612, 618
         }

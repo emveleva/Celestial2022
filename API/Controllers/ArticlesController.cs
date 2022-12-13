@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using API.Controllers;
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class ArticlesController : BaseApiController
     {
         private readonly CelestialDbContext _context;

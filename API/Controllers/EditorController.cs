@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class EditorController : BaseApiController
     {
         private readonly CelestialDbContext _context;
@@ -22,14 +24,6 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Article>>> GetUserArticles(int id)
         {
-            // var userArticles = await _context.Articles.FirstOrDefaultAsync(a => a.AppUserId == id);
-            // if (userArticles == null)
-            // {
-            //     return NotFound();
-            // }
-
-            // return userArticles.ToList();
-
             var user = await _context.Users
                 .Where(u => u.Id == id)
                 .Include(u => u.Articles)
