@@ -12,7 +12,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [Authorize]
     public class ArticlesController : BaseApiController
     {
         private readonly CelestialDbContext _context;

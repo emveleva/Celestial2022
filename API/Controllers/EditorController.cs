@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [Authorize]
+    
     public class EditorController : BaseApiController
     {
         private readonly CelestialDbContext _context;
@@ -71,7 +71,7 @@ namespace API.Controllers
             _context.Articles.Add(article);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetArticles", new { id = article.Id }, article);
+            return CreatedAtAction("GetUserArticles", new { id = article.Id }, article);
         }
 
         
