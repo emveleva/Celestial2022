@@ -1,16 +1,16 @@
 <main>
       <mat-card class="articles-list">
       <!-- <mat-progress-bar *ngIf="!articles" mode="indeterminate"></mat-progress-bar> -->
-      <h1>My Articles</h1>
+      <h1 class="title">My Articles</h1>
 
-      <button mat-raised-button class="button-purple" routerLink="/editor/add" routerLinkActive="active">
+      <button mat-raised-button class="button-mint" routerLink="/editor/add" routerLinkActive="active">
             Add New Article
       </button>
 <!-- <section class="wrapper">
   <h2 *ngIf="articles?.length == 0">You haven't signed up for any articles yet.</h2>
   <article *ngIf="articles?.length > 0" class="table-container"> -->
     
-<table *ngIf="articles" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+<table class="table-container" *ngIf="articles" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
   <ng-container matColumnDef="title">
     <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>
@@ -37,6 +37,6 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator #paginator [length]="dataSource.data.length" [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+<mat-paginator *ngIf="articles" class="table-bottom" #paginator [length]="dataSource.data.length" [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
 </mat-card>
 </main>

@@ -56,7 +56,7 @@ import { EditRoleDialogComponent } from "../edit-role-dialog/edit-role-dialog.co
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
-        dialogConfig.width = '60%';
+        dialogConfig.width = '30%';
         dialogConfig.data = { roles: this.getRolesArray(roles) };
         const ref = this.dialogRef.open(EditRoleDialogComponent, dialogConfig);
         ref.afterClosed().subscribe({

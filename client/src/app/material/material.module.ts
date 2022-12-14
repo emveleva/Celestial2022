@@ -13,6 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
 
 const MaterialComponents = [
   MatFormFieldModule,
@@ -28,7 +29,8 @@ const MaterialComponents = [
   MatPaginatorModule,
   MatSortModule,
   MatTableModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatDividerModule
 ];
 
 @NgModule({

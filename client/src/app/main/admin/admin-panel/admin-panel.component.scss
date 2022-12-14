@@ -1,7 +1,30 @@
 .admin-container {
-    display: flex;;
-    flex-direction: column;
-    align-items: center;
-    width: 70%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  height: 78vh;
+
+  table {
+    width: 100%;
   }
+
+  .table-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.title {
+  padding: 15px;
+  margin: 15px;
+  font-size: 44px;
+  font-weight: 600;
+}
+
+.button-mint {
+  background-color: #56ccc8;
+  color: white;
+}
+

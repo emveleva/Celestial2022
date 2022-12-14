@@ -1,22 +1,33 @@
-mat-card {
-      height: 78vh;
-}
 
-.articles-list h1 {
+.title {
+      padding: 15px;
+      margin: 15px;
       font-size: 44px;
-      padding: 7%;
       font-weight: 600;
-      margin: 0 auto;
 }
 
 .articles-list {
-      display: flex;;
+      display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       width: 70%;
-    }
+
+      table {
+            width: 100%;
+          }
+        
+          .table-bottom {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+          }
+}
 
 .articles {
       width: 100%;
+}
+
+.button-mint {
+      background-color: #56ccc8;
+      color: white;
 }

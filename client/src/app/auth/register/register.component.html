@@ -1,6 +1,6 @@
 <main>
   <mat-card>
-    <h1>Register</h1>
+    <h1 class="title">Register</h1>
     <form [formGroup]="form">
       <div class="form-container">
         <div>
@@ -36,7 +36,7 @@
             <mat-label>Repeat Password</mat-label>
             <input matInput minLength="6" required [type]="hide ? 'password' : 'text'" #rePassword name="rePassword"
               type="password">
-            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            <button type="button" mat-icon-button class="button-mint" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
