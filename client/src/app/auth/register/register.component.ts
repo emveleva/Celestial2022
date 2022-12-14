@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
   
   constructor(private authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private notificationService: NotificationService) { }
 
     ngOnInit(): void {
       this.buildForm();
@@ -44,13 +46,10 @@ export class RegisterComponent implements OnInit {
       const user = this.form.value;
     this.authService.register(user).subscribe({
       next: (res: any) => {
-        this.auth = res['token'];
-        localStorage.setItem('token', this.auth);
-        this.token = res['token']
-        this.router.navigate(['/'])
+        this.router.navigate(['/articles']);
       },
       error: (res: HttpErrorResponse) => {
-        // this.notificationsService.error(res.error)
+        this.notificationService.error(res.error)
       }
     });
   }

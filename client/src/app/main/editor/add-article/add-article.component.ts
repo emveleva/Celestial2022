@@ -2,7 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { Article } from 'src/app/models/article.model';
+import { User } from 'src/app/models/user.model';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { EditorService } from 'src/app/services/editor.service';
@@ -22,7 +24,7 @@ export class AddArticleComponent implements OnInit {
   articleId!: string;
   error!: string;
   notification!: string;
-  userId: number;
+  user: User;
 
   constructor(
     public editorService: EditorService,
@@ -31,11 +33,7 @@ export class AddArticleComponent implements OnInit {
     public articlesService: ArticlesService,
     private router: Router
   ) {
-  }
-
-  getUserId(): any {
-    const userData = this.authService.getUserData();
-    this.userId = userData.nameid;
+    this.authService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
   private buildForm() {
@@ -52,12 +50,11 @@ export class AddArticleComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[a-zA-Z\s]+$/),
       ]],
-      appUserId: this.article?.appUserId || this.userId
+      appUserId: this.article?.appUserId || this.user.id
     });
   }
 
   ngOnInit() {
-    this.getUserId();
     this.buildForm();
   }
 

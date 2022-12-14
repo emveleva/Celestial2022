@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { Article } from 'src/app/models/article.model';
 import { User } from 'src/app/models/user.model';
 import { ArticlesService } from 'src/app/services/articles.service';
@@ -20,7 +21,7 @@ import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-di
 export class MyArticlesListComponent implements OnInit, AfterViewInit {
   articles!: Article[];
   displayedColumns: string[] = ['title', 'body', 'createdOn', 'action'];
-  userData!: any;
+  user!: User;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
@@ -35,11 +36,11 @@ export class MyArticlesListComponent implements OnInit, AfterViewInit {
     private dialogRef: MatDialog,
   ) {
     this.dataSource = new MatTableDataSource(this.articles);
+    this.authService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
   loadArticles() {
-    this.userData = this.authService.getUserData();
-    this.editorService.getUserArticles$(this.userData.nameid).subscribe({
+    this.editorService.getUserArticles$(this.user.id).subscribe({
       next: (res) => {
         this.articles = res;
         this.dataSource.data = this.articles;
@@ -49,7 +50,6 @@ export class MyArticlesListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.loadArticles();
   }
-  
   
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;

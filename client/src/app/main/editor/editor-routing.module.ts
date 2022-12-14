@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UnsavedChangesGuard } from 'src/app/guards/unsaved-changes.guard';
-import { ArticleComponent } from '../articles/article/article.component';
 import { AddArticleComponent } from './add-article/add-article.component';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
@@ -15,7 +13,7 @@ const routes: Routes = [
     path: 'add', pathMatch: 'full', component: AddArticleComponent
   },
   {
-    path: 'edit/:id', pathMatch: 'full', component: EditArticleComponent, canDeactivate: [UnsavedChangesGuard]
+    path: 'edit/:id', pathMatch: 'full', component: EditArticleComponent
   },
   {
     path: ':id', pathMatch: 'full', component: ArticleDetailsComponent

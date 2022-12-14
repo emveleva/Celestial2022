@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const MaterialComponents = [
   MatFormFieldModule,
@@ -27,6 +28,7 @@ const MaterialComponents = [
   MatPaginatorModule,
   MatSortModule,
   MatTableModule,
+  MatCheckboxModule
 ];
 
 @NgModule({

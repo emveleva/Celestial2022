@@ -1,36 +1,25 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpErrorResponse,
-} from '@angular/common/http';
-import { LoginComponent } from '../auth/login/login.component';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
-import { ActivatedRoute, Router } from '@angular/router'
-import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router'
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   public jwtHelper: JwtHelperService = new JwtHelperService();
-  user: User[] = [];
-  userId!: string;
   authUrl = 'https://localhost:5001/api/Auth/';
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'origin-list'}),
-  };
+  user: User;
   auth!: string;
   token!: string | null;
-  constructor(private http: HttpClient, private router: Router) {}
 
-  getUserData(): any {
-    const token: any = localStorage.getItem('token');
-    const userInfo = this.jwtHelper.decodeToken(token);
-    console.log(userInfo)
-    return userInfo;
-  }
+  private currentUserSource = new ReplaySubject<User>(1);
+  currentUser$ = this.currentUserSource.asObservable();
+  
+  constructor(private http: HttpClient, private router: Router) {}
 
   public isAuthenticated(): boolean {
     this.token = localStorage.getItem('token');
@@ -41,18 +30,46 @@ export class AuthService {
     }
   }
 
-  register(user: User) {
-   return  this.http
-      .post(`${this.authUrl}register`, user, this.httpOptions)
+  login(user: User) {
+    return this.http.post(`${this.authUrl}login`, user).pipe(
+      map((response: User) => {
+        const user = response;
+        if (user) {
+          this.setCurrentUser(user);
+        }
+      })
+    )
   }
 
-  login(user: User) {
-    return this.http
-      .post(`${this.authUrl}login`, user, this.httpOptions)
+  register(user: User) {
+    return this.http.post(`${this.authUrl}register`, user).pipe(
+      map((response: User) => {
+        const user = response;
+        if (user) {
+         this.setCurrentUser(user);
+        }
+      })
+    )
+  }
+
+  setCurrentUser(user: User) {
+    user.roles = [];
+    user.id = this.getDecodedToken(user.token).id;
+    const roles = this.getDecodedToken(user.token).role;
+    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
+    localStorage.setItem('token', user.token);
+    localStorage.setItem('user', JSON.stringify(user))
+    this.currentUserSource.next(user);
   }
 
   logout() {
+    localStorage.removeItem('user');
     localStorage.removeItem('token');
+    this.currentUserSource.next(null);
     this.router.navigate(['/']);
+  }
+
+  getDecodedToken(token) {
+    return JSON.parse(atob(token.split('.')[1]));
   }
 }

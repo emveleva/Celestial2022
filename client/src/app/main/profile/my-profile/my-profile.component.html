@@ -1,0 +1,12 @@
+<main>
+      <mat-card>
+            <div class="article-container">
+                  <h2>{{article?.title}}</h2>
+                  <p>{{article?.body}}</p>
+                  <h5>{{article?.createdOn}}</h5>
+                  <h4>{{article?.authorFirstName}} {{article?.authorLastName}}</h4>
+                  <button mat-raised-button class="button-purple" (click)="onEdit(article.id)">Edit</button>
+                  <button mat-raised-button class="button-purple" (click)="onDelete(article.id.toString())">Delete</button>
+            </div>
+      </mat-card>
+</main>

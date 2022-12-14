@@ -34,9 +34,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.form.value).pipe(take(1)).subscribe({
       next: (res) => {
-        console.log(res)
-        this.auth = res['token'];
-        localStorage.setItem('token', this.auth);
+        console.log('logged')
         this.router.navigate(['/articles']);
       },
       error: (res: HttpErrorResponse) => {

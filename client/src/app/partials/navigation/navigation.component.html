@@ -8,8 +8,10 @@
                   <span><a routerLink="/auth/login" routerLinkActive="active">Login</a></span>  
             </section>
             <section class="menu" *ngIf="authService.isAuthenticated()">
-                  <span *ngIf="authService.isAuthenticated()"><a routerLink="/editor" routerLinkActive="active">Editor</a></span>
+                  <span *appHasRole='["Admin", "Moderator"]'><a routerLink="/editor" routerLinkActive="active">Editor</a></span>
                   <span><a routerLink="/articles" routerLinkActive="active">Articles</a></span>
+                  <span><a routerLink="/profile" routerLinkActive="active">Profile</a></span>
+                  <span *appHasRole='["Admin"]'><a routerLink="/admin" routerLinkActive="active">Admin</a></span>
                   <span><a [routerLink]="" (click)="logoutClick()">Logout</a></span>
             </section>
       </nav>

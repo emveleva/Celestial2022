@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Edit User Role</h2>
+<mat-dialog-content class="mat-typography">
+   <form [formGroup]="form">
+        <mat-checkbox
+        formControlName="Admin"
+        [checked]="this.form.get('Admin').value">Admin</mat-checkbox>
+        <mat-checkbox
+        formControlName="Moderator"
+        [checked]="this.form.get('Admin').value">Moderator</mat-checkbox>
+        <mat-checkbox
+        formControlName="User"
+        [checked]="this.form.get('Admin').value">User</mat-checkbox>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="updateRoles()">Edit</button>
+</mat-dialog-actions>
