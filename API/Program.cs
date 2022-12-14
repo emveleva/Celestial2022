@@ -17,45 +17,41 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 // builder.Services.AddApplicationServices(builder.Configuration);
-builder.Services.AddDbContext<CelestialDbContext>(options => 
-        {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-        });
 
-        builder.Services.AddCors();
 
- builder.Services.AddIdentityCore<AppUser>(opt =>
+builder.Services.AddApplicationServices(builder.Configuration);
+// builder.Services.AddIdentityServices(builder.Configuration);
+
+            builder.Services.AddIdentityCore<AppUser>(opt =>
             {
                 opt.Password.RequireNonAlphanumeric = false;
             })
                 .AddRoles<AppRole>()
-                 .AddRoleManager<RoleManager<AppRole>>()
-               .AddSignInManager<SignInManager<AppUser>>()
-               .AddRoleValidator<RoleValidator<AppRole>>()
-               .AddEntityFrameworkStores<CelestialDbContext>();
+                .AddRoleManager<RoleManager<AppRole>>()
+                .AddSignInManager<SignInManager<AppUser>>()
+                .AddRoleValidator<RoleValidator<AppRole>>()
+                .AddEntityFrameworkStores<CelestialDbContext>();
 
-               builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => 
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:secretKey"])),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                    };
+                    
+                });
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:issuer"],
-        ValidAudience = builder.Configuration["Jwt:audience"],
-        IssuerSigningKey = new
-        SymmetricSecurityKey
-        (Encoding.UTF8.GetBytes
-        (builder.Configuration["Jwt:secretKey"]))
-    };
-});
+            builder.Services.AddAuthorization(opt => 
+            {
+                opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                opt.AddPolicy("ModerateRole", policy => policy.RequireRole("Admin", "Moderator"));
+            });
 
-builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -81,7 +77,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 try

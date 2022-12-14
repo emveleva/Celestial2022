@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Data
 {
        public class CelestialDbContext : IdentityDbContext<AppUser, AppRole, int,
-        IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>,
+        IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>,
         IdentityRoleClaim<int>, IdentityUserToken<int>>
     
       {
@@ -21,32 +21,15 @@ namespace API.Data
            
              protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-             modelBuilder.Entity<AppUser>(b =>
-        {
-            // Each User can have many entries in the UserRole join table
-            b.HasMany(e => e.UserRoles)
-                .WithOne(e => e.User)
-                .HasForeignKey(ur => ur.UserId)
-                .IsRequired();
-        });
 
-        modelBuilder.Entity<AppRole>(b =>
-        {
-            // Each Role can have many entries in the UserRole join table
-            b.HasMany(e => e.UserRoles)
-                .WithOne(e => e.Role)
-                .HasForeignKey(ur => ur.RoleId)
-                .IsRequired();
-        });
+         modelBuilder.Entity<LikedArticle>()
+                .HasKey(a => new { a.UserId, a.ArticleId });
 
-        modelBuilder.Entity<LikedArticle>()
-                .HasKey(a => new { a.AppUserId, a.ArticleId });
-
-            modelBuilder.Entity<LikedArticle>()
+                        modelBuilder.Entity<LikedArticle>()
                 .HasOne(s => s.AppUser)
                 .WithMany(l => l.LikedArticles)
-                .HasForeignKey(s => s.ArticleId)
                 .OnDelete(DeleteBehavior.Restrict);
+
             base.OnModelCreating(modelBuilder);
         }
       }

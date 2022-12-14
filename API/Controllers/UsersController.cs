@@ -1,33 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
     public class UsersController : BaseApiController
     {
-       private readonly IArticleService articleService;
+       private readonly IUserService userService;
 
-        public UsersController(IArticleService _articleService)
+        public UsersController(IUserService _userService)
         {
-            _articleService = articleService;
+            _userService = userService;
         }
 
         [HttpPost("{userId}/liked")]
         public async Task<ActionResult> AddToLiked(int articleId, int userId)
         {
 
-            await articleService.AddToLiked(articleId, userId);
+            await userService.AddToLiked(articleId, userId);
             
             return Ok();
         }
@@ -36,7 +27,7 @@ namespace API.Controllers
 
         public async Task<ActionResult<IEnumerable<Article>>> GetLikedArticles(int id)
         {
-            var articles = await articleService.GetLikedArticles(id);
+            var articles = await userService.GetLikedArticles(id);
 
             return Ok(articles);
         }
@@ -45,9 +36,30 @@ namespace API.Controllers
 
         public async Task<ActionResult> RemoveFromLiked(int articleId, int id)
         {
-            await articleService.RemoveFromLiked(articleId, id);
+            await userService.RemoveFromLiked(articleId, id);
 
             return Ok();
         }
+
+        //  [HttpGet("{username}", Name = "GetUser")]
+        // public async Task<ActionResult<UserDto>> GetUser(string username)
+        // {
+        //     return await _unitOfWork.UserRepository.GetMemberAsync(username);
+        // }
+
+        // [HttpPut]
+        // public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+        // {
+
+        //     var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+        //     _mapper.Map(memberUpdateDto, user);
+
+        //     _unitOfWork.UserRepository.Update(user);
+
+        //     if (await _unitOfWork.Complete()) return NoContent();
+
+        //     return BadRequest("Failed to update user");
+        // }
     }
 }

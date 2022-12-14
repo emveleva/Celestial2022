@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using API.Data;
+using API.Helpers;
 using API.Interfaces;
 using API.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace API.Extensions
 {
@@ -16,14 +10,16 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
-            services.AddDbContext<CelestialDbContext>(options => 
-        {
-            options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
-        });
+            services.AddScoped<ITokenService, TokenService>();
+            // services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
-        services.AddCors();
+            services.AddDbContext<CelestialDbContext>(options =>
+            {
 
-        return services;
+                options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            });
+            return services;
         }
     }
 }

@@ -16,8 +16,8 @@ namespace API.Entities
 
         public DateTime Created { get; set; } = DateTime.Now;
 
-        public virtual ICollection<AppUserRole> UserRoles { get; set; }
-        public virtual ICollection<LikedArticle> LikedArticles { get; set; }
-        public virtual ICollection<Article> Articles { get; set; }
+        public string Role { get; set; }
+        public ICollection<LikedArticle> LikedArticles { get; set; }
+        public ICollection<Article> Articles { get; set; }
     }
 }

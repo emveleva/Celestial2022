@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Services
 {
-    public class ArticleService : IArticleService
+    public class UserService : IUserService
     {
         private readonly CelestialDbContext context;
 
-        public ArticleService(CelestialDbContext _context)
+        public UserService(CelestialDbContext _context)
         {
             context = _context;
         }
@@ -38,7 +38,7 @@ namespace API.Services
                 user.LikedArticles.Add(new LikedArticle()
                 {
                     ArticleId = article.Id,
-                    AppUserId = user.Id,
+                    UserId = user.Id,
                     Article = article,
                     AppUser = user
                 }) ;

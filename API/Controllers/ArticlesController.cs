@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    public class ArticlesController : BaseApiController
+        public class ArticlesController : BaseApiController
     {
         private readonly CelestialDbContext _context;
 

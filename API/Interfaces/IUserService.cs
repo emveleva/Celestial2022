@@ -2,7 +2,7 @@ using API.Entities;
 
 namespace API.Interfaces
 {
-    public interface IArticleService
+    public interface IUserService
     {
         Task AddToLiked(int articleId, int userId);
 

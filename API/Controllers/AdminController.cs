@@ -18,24 +18,34 @@ namespace API.Controllers
             _userManager = userManager;
         }
 
-        [Authorize(Policy = "RequireAdminRole")]
+       [Authorize(Policy = "RequireAdminRole")]
         [HttpGet("users-with-roles")]
         public async Task<ActionResult> GetUsersWithRoles()
         {
-            var users = await _userManager.Users
-                .Include(r => r.UserRoles)
-                .ThenInclude(r => r.Role)
-                .OrderBy(u => u.UserName)
-                .Select(u => new
-                {
-                    u.Id,
-                    Username = u.UserName,
-                    Roles = u.UserRoles.Select(r => r.Role.Name).ToList()
-                })
-                .ToListAsync();
+            var users = await _userManager.Users.ToListAsync();
+            var usersWithRoles = users.Select(c => new AppUserWithRole()
+            {
+            Id = c.Id,
+            Username = c.UserName,
+            Role = string.Join(", ", _userManager.GetRolesAsync(c).Result.ToArray())
+        }).ToList();
 
-            return Ok(users);
+            return Ok(usersWithRoles);
         }
+
+
+        [HttpGet("users-with-roles/{username}")]
+        public async Task<ActionResult> GetUsersWithRoles(string username)
+        {
+           var user = await _userManager.FindByNameAsync(username);
+
+            if (user == null) return NotFound("Could not find user");
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            return Ok(userRoles);
+        }
+
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpPost("edit-roles/{username}")]

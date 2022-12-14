@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
-{
-    
+{    
     public class EditorController : BaseApiController
     {
         private readonly CelestialDbContext _context;
