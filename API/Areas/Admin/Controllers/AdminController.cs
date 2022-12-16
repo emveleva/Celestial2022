@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using API.Controllers;
 using API.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Controllers
+namespace API.Areas.Admin
 {
     public class AdminController : BaseApiController
     {
@@ -32,20 +29,6 @@ namespace API.Controllers
 
             return Ok(usersWithRoles);
         }
-
-
-        [HttpGet("users-with-roles/{username}")]
-        public async Task<ActionResult> GetUsersWithRoles(string username)
-        {
-           var user = await _userManager.FindByNameAsync(username);
-
-            if (user == null) return NotFound("Could not find user");
-
-            var userRoles = await _userManager.GetRolesAsync(user);
-
-            return Ok(userRoles);
-        }
-
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpPost("edit-roles/{username}")]

@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Interfaces
 {
     public interface IUserRepository
     {
-        void Update(AppUser user);
-        Task<IEnumerable<AppUser>> GetUsersAsync();
-        Task<AppUser> GetUserByIdAsync(int id);
-        Task<AppUser> GetUserByUsernameAsync(string username);
+        Task AddToLiked(LikedArticle likedArticle);
+
+        Task<IEnumerable<Article>> GetLikedArticles(int userId);
+
+        Task RemoveFromLiked(int articleId, int userId);
+
+        Task<AppUser> GetUserProfile(int id);
+
+        Task<IdentityResult> UpdateUserProfile(AppUser user);
     }
 }

@@ -48,7 +48,10 @@ namespace API.Controllers
 
         return new LoggedUserDto
         {
+            Id = user.Id,
             Username = user.UserName,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
             Token = await _tokenService.CreateToken(user)
         };
     }
@@ -68,7 +71,10 @@ namespace API.Controllers
 
         return new LoggedUserDto
         {
+            Id = user.Id,
             Username = user.UserName,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
             Token = await _tokenService.CreateToken(user)
         };
     }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(CelestialDbContext))]
-    [Migration("20221214172344_createTable")]
-    partial class createTable
+    [Migration("20221215234141_createTables")]
+    partial class createTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -309,7 +309,7 @@ namespace API.Migrations
             modelBuilder.Entity("API.Entities.LikedArticle", b =>
                 {
                     b.HasOne("API.Entities.Article", "Article")
-                        .WithMany()
+                        .WithMany("LikedArticles")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -380,6 +380,11 @@ namespace API.Migrations
                 {
                     b.Navigation("Articles");
 
+                    b.Navigation("LikedArticles");
+                });
+
+            modelBuilder.Entity("API.Entities.Article", b =>
+                {
                     b.Navigation("LikedArticles");
                 });
 #pragma warning restore 612, 618

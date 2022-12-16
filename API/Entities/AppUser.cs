@@ -8,9 +8,9 @@ namespace API.Entities
       public class AppUser : IdentityUser<int>
     {
 
-        public string FirstName { get; init; }
+        public string FirstName { get; set; }
         
-        public string LastName { get; init; }
+        public string LastName { get; set; }
 
         public string ImageUrl { get; set; }
 

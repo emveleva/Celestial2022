@@ -32,5 +32,7 @@ namespace API.Entities
 
         public int AppUserId { get; set; }
 
+        public ICollection<LikedArticle> LikedArticles { get; set; }
+
     }
 }

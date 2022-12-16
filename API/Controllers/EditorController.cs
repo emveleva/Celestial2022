@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,101 +14,64 @@ namespace API.Controllers
     public class EditorController : BaseApiController
     {
         private readonly CelestialDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public EditorController(CelestialDbContext context)
+        public EditorController(CelestialDbContext context, IUnitOfWork unitOfWork)
         {
             _context = context;
+            _unitOfWork = unitOfWork;
         }
 
          // GET: api/editor
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Article>>> GetUserArticles(int id)
         {
-            var user = await _context.Users
-                .Where(u => u.Id == id)
-                .Include(u => u.Articles)
-                .FirstOrDefaultAsync();
+            var articles = await _unitOfWork.ArticleRepository.GetArticles();
 
-            if (user == null)
-            {
-                throw new ArgumentException("Invalid user ID");
-            }
-
-            return user.Articles
-                .Select(a => new Article()
-                {
-                    Id = a.Id,
-                    Title = a.Title,
-                    AuthorFirstName = a.AuthorFirstName,
-                    AuthorLastName = a.AuthorLastName,
-                    Body = a.Body,
-                    CreatedOn = a.CreatedOn,
-                    ImageUrl = a.ImageUrl,
-                    AppUserId = a.AppUserId
-
-                }).ToList();
-
+            return Ok(articles);
         }
         
         // GET: api/editor/5
         [HttpGet("articles/{id}")]
         public async Task<ActionResult<Article>> GetArticle(int id)
         {
-            var article = await _context.Articles.FindAsync(id);
+            var article = await _unitOfWork.ArticleRepository.GetArticle(id);
 
-            if (article == null)
-            {
-                return NotFound();
-            }
-
-            return article;
+            return Ok(article);
         }
         
         // POST: api/editor
         [HttpPost]
-        public async Task<ActionResult<Article>> PostArticles(Article article)
+        public async Task<ActionResult<Article>> PostArticle(Article article)
         {
-            _context.Articles.Add(article);
-            await _context.SaveChangesAsync();
+             await _unitOfWork.EditorRepository.PostArticle(article);
 
-            return CreatedAtAction("GetUserArticles", new { id = article.Id }, article);
+            if (await _unitOfWork.Complete()) return NoContent();
+
+            return BadRequest("Failed to post article.");
         }
 
         
         // PUT: api/editor/edit/5
-        [HttpPut("edit/{id}")]
-        public async Task<IActionResult> PutArticle(int id, Article article)
+        [HttpPut("edit")]
+        public async Task<IActionResult> EditArticle(Article article)
         {
-            if(id!=article.Id)
-            {
-                return BadRequest();
-            }
-            _context.Entry(article).State = EntityState.Modified;
+            _unitOfWork.EditorRepository.EditArticle(article);
 
-                await _context.SaveChangesAsync();
+            if (await _unitOfWork.Complete()) return NoContent();
 
-            return Ok();
+            return BadRequest("Failed to update article");
         }
 
         // DELETE: api/Articles/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Article>> DeleteArticle(int id)
         {
-            var article = await _context.Articles.FindAsync(id);
-            if (article == null)
-            {
-                return NotFound();
-            }
+            _unitOfWork.EditorRepository.DeleteArticle(id);
 
-            _context.Articles.Remove(article);
-            await _context.SaveChangesAsync();
+            if (await _unitOfWork.Complete()) return NoContent();
 
-            return article;
-        }
-
-        private bool ArticleExists(int id)
-        {
-            return _context.Articles.Any(e => e.Id == id);
+            return BadRequest("Failed to delete article");
         }
     }
 }

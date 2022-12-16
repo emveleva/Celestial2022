@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class createTable : Migration
+    public partial class createTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -307,7 +307,7 @@ namespace API.Migrations
             modelBuilder.Entity("API.Entities.LikedArticle", b =>
                 {
                     b.HasOne("API.Entities.Article", "Article")
-                        .WithMany()
+                        .WithMany("LikedArticles")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -378,6 +378,11 @@ namespace API.Migrations
                 {
                     b.Navigation("Articles");
 
+                    b.Navigation("LikedArticles");
+                });
+
+            modelBuilder.Entity("API.Entities.Article", b =>
+                {
                     b.Navigation("LikedArticles");
                 });
 #pragma warning restore 612, 618

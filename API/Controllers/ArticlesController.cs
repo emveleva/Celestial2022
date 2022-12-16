@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.Controllers;
 using API.Data;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,34 +13,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-        public class ArticlesController : BaseApiController
+    public class ArticlesController : BaseApiController
     {
-        private readonly CelestialDbContext _context;
 
-        public ArticlesController(CelestialDbContext context)
+        private readonly IUnitOfWork _unitOfWork;
+        public ArticlesController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/articles
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Article>>> GetArticles()
         {
-            return await _context.Articles.ToListAsync();
+            var articles = await _unitOfWork.ArticleRepository.GetArticles();
+
+            return Ok(articles);
         }
-        
+
         // GET: api/articles/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Article>> GetArticle(int id)
         {
-            var article = await _context.Articles.FindAsync(id);
+            var article = await _unitOfWork.ArticleRepository.GetArticle(id);
 
-            if (article == null)
-            {
-                return NotFound();
-            }
-
-            return article;
+            return Ok(article);
         }
     }
 }

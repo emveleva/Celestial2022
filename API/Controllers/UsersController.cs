@@ -1,65 +1,71 @@
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     public class UsersController : BaseApiController
     {
-       private readonly IUserService userService;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UsersController(IUserService _userService)
+        public UsersController(IUnitOfWork unitOfWork)
         {
-            _userService = userService;
+            _unitOfWork = unitOfWork;
+
+
         }
 
-        [HttpPost("{userId}/liked")]
-        public async Task<ActionResult> AddToLiked(int articleId, int userId)
+        [HttpPost("liked")]
+        public async Task<ActionResult> AddToLiked(LikedArticle likedArticle)
         {
 
-            await userService.AddToLiked(articleId, userId);
-            
-            return Ok();
+            await _unitOfWork.UserRepository.AddToLiked(likedArticle);
+
+            if (await _unitOfWork.Complete()) return NoContent();
+
+            return BadRequest("Failed to add to liked.");
         }
 
-        [HttpGet("{id}/liked")]
+        [HttpGet("liked/{id}")]
 
         public async Task<ActionResult<IEnumerable<Article>>> GetLikedArticles(int id)
         {
-            var articles = await userService.GetLikedArticles(id);
+            var articles = await _unitOfWork.UserRepository.GetLikedArticles(id);
 
             return Ok(articles);
         }
 
-        [HttpDelete("{id}/liked/{articleId}")]
+        [HttpDelete("liked/{id}")]
 
         public async Task<ActionResult> RemoveFromLiked(int articleId, int id)
         {
-            await userService.RemoveFromLiked(articleId, id);
+            await _unitOfWork.UserRepository.RemoveFromLiked(articleId, id);
 
-            return Ok();
+            if (await _unitOfWork.Complete()) return NoContent();
+
+            return BadRequest("Failed to remove from liked.");
         }
 
-        //  [HttpGet("{username}", Name = "GetUser")]
-        // public async Task<ActionResult<UserDto>> GetUser(string username)
-        // {
-        //     return await _unitOfWork.UserRepository.GetMemberAsync(username);
-        // }
+        [HttpGet("profile/{id}")]
+        public async Task<ActionResult<UserDto>> GetUser(int id)
+        {
 
-        // [HttpPut]
-        // public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
-        // {
+            var user = await _unitOfWork.UserRepository.GetUserProfile(id);
 
-        //     var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+            return Ok(user);
+        }
 
-        //     _mapper.Map(memberUpdateDto, user);
+        [HttpPut("profile")]
+        public async Task<ActionResult> UpdateUserProfile(AppUser user)
+        {
 
-        //     _unitOfWork.UserRepository.Update(user);
+            var result = await _unitOfWork.UserRepository.UpdateUserProfile(user);
 
-        //     if (await _unitOfWork.Complete()) return NoContent();
+            if (!result.Succeeded) return BadRequest(result.Errors);
 
-        //     return BadRequest("Failed to update user");
-        // }
+            return Ok("All good");
+        }
     }
 }
