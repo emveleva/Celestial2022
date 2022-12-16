@@ -3,11 +3,19 @@
   flex-direction: column;
   align-items: center;
   width: 70%;
-  height: 78vh;
+  min-height: 78vh;
 
-  table {
+  .section-container {
+    height: 100%;
     width: 100%;
+    .mat-elevation-z8 {
+    width: 100%;
+
+    .width-15 {
+      width: 15%;
+    }
   }
+}
 
   .table-bottom {
     width: 100%;

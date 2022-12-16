@@ -1,11 +1,18 @@
-main {
+mat-card {
       flex-direction: row;
       align-items: center;
       justify-content: center;
       gap: 20px;
+      display: flex;
+      width: 70%;
+      min-height: 78vh;
 }
+
 .img {
-      width: 40%;
+      display: flex;
+      align-items: flex-end;
+      width: 50%;
+      height: 90%;
 }
 img {
       width: 90%;

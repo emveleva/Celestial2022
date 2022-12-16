@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/models/article.model';
@@ -14,49 +15,31 @@ import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-di
   styleUrls: ['./edit-profile.component.scss'],
 })
 export class EditProfileComponent implements OnInit {
-  id!: string | null;
-  article!: Article;
+  form!: FormGroup;
+  
+  constructor(private authService: AuthService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private notificationService: NotificationService) { }
 
-  constructor(private activatedRoute: ActivatedRoute, private notificationService: NotificationService,
-    private dialogRef: MatDialog, private router: Router, private editorService: EditorService) {
-    
-   }
-
-  ngOnInit() {
-    this.getArticleDetails();
- 
-   }
- 
-   getArticleDetails(){
-     this.id = this.activatedRoute.snapshot.params.id;
-     if (this.id){
-     this.editorService.getOneArticle(this.id).subscribe({
-       next: (res) => {
-         this.article = res
-       }
-     })
-   }
-   }
-   onEdit(id: number){
-    this.router.navigate([`editor/edit/${id}`])
-  }
-
-    onDelete(id: string) {
-      const dialogRef = this.dialogRef.open(ConfirmDialogComponent, {
-        width: '30%',
-        data: {
-          title: 'Are you sure you want to delete this article?',
-        },
-      });
-      dialogRef.afterClosed().subscribe((dialogResult) => {
-        if (dialogResult) {       
-                this.editorService.deleteArticle(id).subscribe({
-                  next: () => {
-                    this.notificationService.success('Article deleted.');
-                    this.router.navigate(['editor'])
-                  },
-                });
-        }
-      });
+    ngOnInit(): void {
+      this.buildForm();
     }
+
+    private buildForm() {
+      this.form = this.formBuilder.group({
+        email: ['',
+          [Validators.required
+        ]],
+        firstName: ['', [Validators.required]],
+        lastName: ['', [Validators.required]],
+        imageUrl: ['',
+      [Validators.pattern(
+            /https?:\/\/(www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&\/\/=]*)/gm
+        )]]})
+    }
+    onBack() {
+      this.router.navigate([`/profile`])
+    }
+
   }

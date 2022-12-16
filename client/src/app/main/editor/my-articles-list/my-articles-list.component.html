@@ -1,42 +1,41 @@
 <main>
-      <mat-card class="articles-list">
-      <!-- <mat-progress-bar *ngIf="!articles" mode="indeterminate"></mat-progress-bar> -->
-      <h1 class="title">My Articles</h1>
+  <mat-card class="articles-list">
+    <h1 class="title">My Articles</h1>
 
-      <button mat-raised-button class="button-mint" routerLink="/editor/add" routerLinkActive="active">
-            Add New Article
-      </button>
-<!-- <section class="wrapper">
-  <h2 *ngIf="articles?.length == 0">You haven't signed up for any articles yet.</h2>
-  <article *ngIf="articles?.length > 0" class="table-container"> -->
-    
-<table class="table-container" *ngIf="articles" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <button mat-raised-button class="button-mint" routerLink="/editor/add" routerLinkActive="active">
+      Add New Article
+    </button>
+    <div class="empty-page" *ngIf="articles?.length === 0">
+      <div><img src="../../../../assets/empty.png" alt="open-book"></div>
+      <h2>There are no articles created yet.</h2>
+    </div>
+    <div class="section-container">
+    <table class="table-container" *ngIf="articles?.length > 0" mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+      matSort>
 
-  <ng-container matColumnDef="title">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>
-    <td mat-cell *matCellDef="let article"> {{article.title}} </td>
-  </ng-container>
-  <ng-container matColumnDef="body">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>Body</th>
-      <td mat-cell *matCellDef="let article"> {{article.body}} </td>
-    </ng-container>
-  <ng-container matColumnDef="createdOn">
-    <th mat-header-cell  mat-sort-header *matHeaderCellDef> Created On </th>
-    <td mat-cell *matCellDef="let article"> {{article.createdOn | date}} </td>
-  </ng-container>
+      <ng-container matColumnDef="title">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="width-40">Title</th>
+        <td mat-cell *matCellDef="let article"> {{article.title}} </td>
+      </ng-container>
+      <ng-container matColumnDef="createdOn">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Created On </th>
+        <td mat-cell *matCellDef="let article"> {{article.createdOn | date}} </td>
+      </ng-container>
 
-  <ng-container matColumnDef="action">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef> Action </th>
-    <td mat-cell *matCellDef="let article">
-      <button (click)="onView(article.id)">View</button>
-      <button (click)="onEdit(article.id)">Edit</button>
-      <button (click)="onDelete(article.id)">Delete</button>
-</td>
-  </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="width-30"> Action </th>
+        <td mat-cell *matCellDef="let article">
+          <button mat-raised-button class="button-purple" (click)="onView(article.id)">View</button>
+          <button mat-raised-button class="button-blue" (click)="onEdit(article.id)">Edit</button>
+          <button mat-raised-button class="button-pink" (click)="onDelete(article.id)">Delete</button>
+        </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-<mat-paginator *ngIf="articles" class="table-bottom" #paginator [length]="dataSource.data.length" [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
-</mat-card>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+    <mat-paginator *ngIf="articles?.length > 0" class="table-bottom" #paginator [length]="dataSource.data.length"
+      [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+  </mat-card>
 </main>

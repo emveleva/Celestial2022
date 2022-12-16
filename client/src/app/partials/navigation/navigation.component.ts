@@ -15,7 +15,6 @@ export class NavigationComponent {
 
   constructor(public authService: AuthService, 
     private router: Router) { 
-      // this.authService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
   logoutClick() {

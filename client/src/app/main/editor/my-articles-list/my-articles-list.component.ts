@@ -20,7 +20,7 @@ import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-di
 })
 export class MyArticlesListComponent implements OnInit, AfterViewInit {
   articles!: Article[];
-  displayedColumns: string[] = ['title', 'body', 'createdOn', 'action'];
+  displayedColumns: string[] = ['title', 'createdOn', 'action'];
   user!: User;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -36,18 +36,21 @@ export class MyArticlesListComponent implements OnInit, AfterViewInit {
     private dialogRef: MatDialog,
   ) {
     this.dataSource = new MatTableDataSource(this.articles);
-    this.authService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
+    
   }
 
   loadArticles() {
+    console.log(this.user)
     this.editorService.getUserArticles$(this.user.id).subscribe({
       next: (res) => {
         this.articles = res;
+        console.log(res)
         this.dataSource.data = this.articles;
       },
     });
   }
   ngOnInit() {
+    this.authService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
     this.loadArticles();
   }
   

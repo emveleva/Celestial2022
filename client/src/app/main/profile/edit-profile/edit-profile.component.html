@@ -1,12 +1,21 @@
 <main>
       <mat-card>
-            <div class="article-container">
-                  <h2>{{article?.title}}</h2>
-                  <p>{{article?.body}}</p>
-                  <h5>{{article?.createdOn}}</h5>
-                  <h4>{{article?.authorFirstName}} {{article?.authorLastName}}</h4>
-                  <button mat-raised-button class="button-purple" (click)="onEdit(article.id)">Edit</button>
-                  <button mat-raised-button class="button-purple" (click)="onDelete(article.id.toString())">Delete</button>
-            </div>
+            <h1 class="title">Edit My Profile</h1>
+            <form [formGroup]="form">
+                  <mat-form-field>
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstName" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" type="email" required>
+                  </mat-form-field>
+                  <button mat-raised-button class="button-red" type="button" (click)="onBack()">Cancel</button>
+                  <button mat-raised-button class="button-purple" type="submit">Edit</button>
+            </form>
       </mat-card>
 </main>

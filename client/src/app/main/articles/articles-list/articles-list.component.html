@@ -6,8 +6,9 @@
                         <app-article [article]="article"></app-article>
                   </div>
             </div>
-            <div *ngIf="articles.length === 0">
-                  <h3>There are no articles created yet.</h3>
+            <div class="empty-page" *ngIf="articles?.length === 0">
+                  <div><img src="../../../../assets/empty.png" alt="open-book"></div>
+                  <h2>There are no articles created yet.</h2>
             </div>
       </mat-card>
 </main>

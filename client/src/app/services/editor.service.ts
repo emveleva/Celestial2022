@@ -14,7 +14,7 @@ export class EditorService {
       };
       constructor(private http: HttpClient) {}
 
-      getUserArticles$(id: string): Observable<Article[]> {
+      getUserArticles$(id: number): Observable<Article[]> {
             return this.http.get<Article[]>(`${this.editorUrl}${id}`);
       }
 
@@ -23,7 +23,7 @@ export class EditorService {
       }
 
       editArticle(article: Article) {
-            return this.http.put(`${this.editorUrl}edit/${article.id}`, article, this.httpOptions);
+            return this.http.put(`${this.editorUrl}edit`, article, this.httpOptions);
       }
 
       deleteArticle(id: string): Observable<Article[]> {
@@ -33,6 +33,4 @@ export class EditorService {
       getOneArticle(id: string):  Observable<Article>{
             return this.http.get<Article>(`${this.editorUrl}articles/${id}`)
       }
-
-      // getArticlesByUser
 }

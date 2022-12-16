@@ -5,7 +5,7 @@ main h1 {
       margin: 0 auto;
 }
 mat-card {
-      height: 78vh;
+      min-height: 78vh;
       width: 70%;
 }
 
@@ -15,5 +15,19 @@ mat-card {
       flex-direction: column;
       margin: 10px;
 }
+
+.article-title {
+      color: #9990ff;
+      font-size: 28px;
+}
+
+.created-date {
+      color: #56ccc8;
+}
+
+.article-body {
+      color: #6f6f6f;
+}
+ 
 
  

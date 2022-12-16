@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user.model';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { EditorService } from 'src/app/services/editor.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-add-article',
@@ -31,7 +32,8 @@ export class AddArticleComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     public articlesService: ArticlesService,
-    private router: Router
+    private router: Router,
+    private nofiticationService: NotificationService
   ) {
     this.authService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
@@ -41,11 +43,13 @@ export class AddArticleComponent implements OnInit {
       title: [this.article?.title, [
         Validators.required,
       ]],
-      authorFirstName: 
-        this.article?.authorFirstName
+      authorFirstName:
+        this.user.firstName
       ,
-      authorLastName: this.article?.authorLastName,
-      body: this.article?.body,
+      authorLastName:  this.user.firstName,
+      body: [this.article?.body, [
+        Validators.required,
+      ]],
       imageUrl: [this.article?.imageUrl, [
         Validators.required,
         Validators.pattern(/^[a-zA-Z\s]+$/),
@@ -61,20 +65,17 @@ export class AddArticleComponent implements OnInit {
   onBack() {
     this.router.navigate([`editor/`])
   }
-  
+
   onSubmit() {
-    this.error = '';
-    this.notification = '';
-    
-              this.editorService.addArticle(this.form.value).subscribe({
-                next: () => {
-                  console.log('new article added')
-                  this.notification = 'New article added!'
-                },
-                error: (res: HttpErrorResponse) => {
-                  console.log(res)
-                  this.error = res.error;
-                },
-              });
-  }}
+    console.log(this.form.value)
+    this.editorService.addArticle(this.form.value).subscribe({
+      next: (res) => {
+        this.nofiticationService.success("Article added")
+      },
+      error: (error: HttpErrorResponse) => {
+        this.nofiticationService.error(error.message);
+      },
+    });
+  }
+}
 

@@ -1,20 +1,17 @@
-main h1 {
-      font-size: 44px;
-      padding: 7%;
-      font-weight: 600;
-      margin: 0 auto;
-}
 mat-card {
-      height: 78vh;
-      width: 70%;
-}
-
-.article-container {
       display: flex;
-      justify-content: center;
       flex-direction: column;
-      margin: 10px;
-      // background-color: rgb(216, 135, 251);
+      align-items: center;
+      width: 70%;
+      min-height: 78vh;
+
+
+      .title {
+            padding: 15px;
+            margin: 15px;
+            font-size: 44px;
+            font-weight: 600;
+      }
 }
 
  

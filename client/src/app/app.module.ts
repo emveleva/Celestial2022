@@ -12,12 +12,14 @@ import { SharedModule } from './shared/shared.module';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 import { HasRoleDirective } from './directives/has-role.directive';
+import { HomeComponent } from './main/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     FooterComponent,
+    HomeComponent,
     HasRoleDirective
   ],
 

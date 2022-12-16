@@ -35,6 +35,7 @@ export class AuthService {
       map((response: User) => {
         const user = response;
         if (user) {
+          console.log(user)
           this.setCurrentUser(user);
         }
       })
@@ -46,6 +47,7 @@ export class AuthService {
       map((response: User) => {
         const user = response;
         if (user) {
+          console.log(user)
          this.setCurrentUser(user);
         }
       })
@@ -54,11 +56,12 @@ export class AuthService {
 
   setCurrentUser(user: User) {
     user.roles = [];
-    user.id = this.getDecodedToken(user.token).id;
+    user.id = Number(this.getDecodedToken(user.token).nameid);
     const roles = this.getDecodedToken(user.token).role;
     Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
     localStorage.setItem('token', user.token);
     localStorage.setItem('user', JSON.stringify(user))
+    console.log(user)
     this.currentUserSource.next(user);
   }
 

@@ -1,39 +1,27 @@
 <main>
-  <mat-card>
-    <h1>Add New Article</h1>
-      <form [formGroup]="form" class="normal-form" (submit)="onSubmit()">
-        <section class="fields">
-        <div class="left">
+  <mat-card class="article-container">
+    <h1 class="title">Add New Article</h1>
+    <form [formGroup]="form" class="normal-form" (submit)="onSubmit()">
+      <div class="upper-container">
         <mat-form-field>
           <mat-label>Title</mat-label>
           <input formControlName="title" matInput required>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Author First Name</mat-label>
-          <input formControlName="authorFirstName" matInput >
+          <mat-label>Image Url</mat-label>
+          <input formControlName="imageUrl" matInput required>
         </mat-form-field>
+      </div>
+      <div class="body-container">
         <mat-form-field>
-            <mat-label>Author Last Name</mat-label>
-            <input formControlName="authorLastName" matInput >
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Image Url</mat-label>
-            <input formControlName="imageUrl" matInput required>
-          </mat-form-field>
-        </div>
-        <div class="right">
-            <mat-form-field>
-                  <mat-label>Body</mat-label>
-                  <textarea rows="15"  matInput formControlName="body"
-                    placeholder="Type what you think in here..."></textarea>
-                </mat-form-field>
-        </div>
-      </section>
-          
-        <div class="buttons">
-          <button mat-raised-button class="button-purple" type="submit">Confirm</button>
-          <button mat-raised-button class="button-red" type="button" (click)="onBack()">Cancel</button>
-        </div>
-      </form>
+          <mat-label>Body</mat-label>
+          <textarea rows="15" matInput formControlName="body" required placeholder="Type what you think in here..."></textarea>
+        </mat-form-field>
+      </div>
+      <div class="buttons">
+        <button mat-raised-button class="button-red" type="button" (click)="onBack()">Cancel</button>
+        <button mat-raised-button class="button-purple" type="submit">Confirm</button>
+      </div>
+    </form>
   </mat-card>
-  </main>
+</main>
