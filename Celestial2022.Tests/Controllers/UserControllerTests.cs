@@ -1,29 +1,34 @@
-﻿using API.Data;
+﻿using API.Controllers;
+using API.Data;
 using API.Entities;
+using API.Interfaces;
 using API.Repositories;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Celestial2022.Tests.Repositories
+namespace Celestial2022.Tests.Controllers
 {
-    public class UserRepositoryTests
+    public class UserControllerTests
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly CelestialDbContext _context;
 
-        public UserRepositoryTests()
+        public UserControllerTests()
         {
             DbContextOptionsBuilder options = new DbContextOptionsBuilder<CelestialDbContext>()
-                .UseInMemoryDatabase(
-                    Guid.NewGuid().ToString() // Use GUID so every test will use a different db
-                );
+               .UseInMemoryDatabase(
+                   Guid.NewGuid().ToString() // Use GUID so every test will use a different db
+               );
 
             _context = new CelestialDbContext((DbContextOptions<CelestialDbContext>)options.Options);
+            _unitOfWork = new Mock<IUnitOfWork>().Object;
         }
+
         [Fact]
         public async Task AddToLiked_ShouldAddArticleToUserLiked()
         {
@@ -60,7 +65,7 @@ namespace Celestial2022.Tests.Repositories
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            var sut = new UserRepository(_context);
+            var sut = new UsersController(_unitOfWork);
 
             // Act
             await sut.AddToLiked(likedArticle);
@@ -110,16 +115,14 @@ namespace Celestial2022.Tests.Repositories
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            var sut = new UserRepository(_context);
+            var sut = new UsersController(_unitOfWork);
 
             // Act
 
 
-            IEnumerable<Article> result = await sut.GetLikedArticles(user.Id);
-            var likedArticles = 1;
+            var result = sut.GetLikedArticles(user.Id);
 
-            Assert.Equal(likedArticles, result.Count());
-            Assert.True(result.Any());
+            Assert.NotNull(result);
         }
 
 
@@ -158,11 +161,11 @@ namespace Celestial2022.Tests.Repositories
             _context.Articles.Add(article);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            var sut = new UserRepository(_context);
+            var sut = new UsersController(_unitOfWork);
 
 
             // Act
-            await sut.RemoveFromLiked(likedArticle.ArticleId, likedArticle.UserId);
+            sut.RemoveFromLiked(likedArticle.ArticleId, likedArticle.UserId);
             await _context.SaveChangesAsync();
 
             // Assert
@@ -188,41 +191,13 @@ namespace Celestial2022.Tests.Repositories
             });
             await _context.SaveChangesAsync();
 
-            var sut = new UserRepository(_context);
+            var sut = new UsersController(_unitOfWork);
 
             // Act
-            var result = await sut.GetUserProfile(userId);
+            var result = sut.GetUser(userId);
 
             // Assert
             Assert.NotNull(result);
-        }
-
-        [Fact]
-        public async Task GetUser_WithInvalidId_ShouldReturnNull()
-        {
-            // Arrange
-            var userId = 1;
-            _context.Users.Add(new AppUser
-            {
-                Id = userId,
-                FirstName = "FirstName",
-                LastName = "LastName",
-                Email = "email@mail.com",
-                ImageUrl = "ImageUrl",
-                Created = DateTime.Now,
-                LikedArticles = new List<LikedArticle>() { },
-                Articles = new List<Article> { }
-            });
-            await _context.SaveChangesAsync();
-
-            var sut = new UserRepository(_context);
-
-            // Act
-            var result = await sut.GetUserProfile(-1);
-
-            // Assert
-            Assert.Null(result);
-
         }
 
         [Fact]
@@ -243,7 +218,7 @@ namespace Celestial2022.Tests.Repositories
             });
             await _context.SaveChangesAsync();
 
-            var sut = new UserRepository(_context);
+            var sut = new UsersController(_unitOfWork);
 
             var existingUser = _context.Users.FirstOrDefault(u => u.Id == 1);
 
