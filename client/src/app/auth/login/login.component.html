@@ -5,6 +5,9 @@
       <mat-form-field>
         <mat-label>Username</mat-label>
         <input matInput formControlName="username" required>
+        <mat-error *ngIf="this.form.get('username').hasError('required')">
+          Username is required.
+        </mat-error>
       </mat-form-field>
       <mat-form-field hintLabel="Min 6 characters">
         <mat-label>Password</mat-label>
@@ -14,7 +17,9 @@
           [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <!-- <mat-hint align="end">{{password.value?.length || 0}}/6</mat-hint> -->
+        <mat-error *ngIf="this.form.get('password').hasError('required')">
+          Password is required.
+        </mat-error>
       </mat-form-field>
       <button mat-raised-button class="button-mint" type="submit" (click)="onSubmit()">Login</button>
   </form>

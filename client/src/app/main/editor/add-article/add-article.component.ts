@@ -39,6 +39,7 @@ export class AddArticleComponent implements OnInit {
   }
 
   private buildForm() {
+    console.log(this.user)
     this.form = this.formBuilder.group({
       title: [this.article?.title, [
         Validators.required,
@@ -46,12 +47,11 @@ export class AddArticleComponent implements OnInit {
       authorFirstName:
         this.user.firstName
       ,
-      authorLastName:  this.user.firstName,
+      authorLastName:  this.user.lastName,
       body: [this.article?.body, [
         Validators.required,
       ]],
       imageUrl: [this.article?.imageUrl, [
-        Validators.required,
         Validators.pattern(/^[a-zA-Z\s]+$/),
       ]],
       appUserId: this.article?.appUserId || this.user.id

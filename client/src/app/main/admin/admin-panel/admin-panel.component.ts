@@ -51,13 +51,11 @@ import { EditRoleDialogComponent } from "../edit-role-dialog/edit-role-dialog.co
       }
     
       openRolesDialog(user: User, roles: []) {
-        console.log(roles)
-        console.log(user)
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
         dialogConfig.width = '30%';
-        dialogConfig.data = { roles: this.getRolesArray(roles) };
+        dialogConfig.data = { user, roles: this.getRolesArray(roles) };
         const ref = this.dialogRef.open(EditRoleDialogComponent, dialogConfig);
         ref.afterClosed().subscribe({
           next: (res) => {

@@ -1,6 +1,7 @@
-<div class="article-container">
+<div class="article-container" *ngIf="article">
       <h5 class="created-date">{{article.createdOn | date}}</h5>
       <h2 class="article-title">{{article.title}}</h2>
       <p class="article-body">{{article.body}}</p>
       <h4>{{article.authorFirstName}} {{article.authorLastName}}</h4>
+      <button mat-raised-button (click)="onBack()">Like Article</button>
 </div>

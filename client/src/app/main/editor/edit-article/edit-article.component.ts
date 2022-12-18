@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user.model';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { EditorService } from 'src/app/services/editor.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-edit-article',
@@ -32,14 +33,15 @@ export class EditArticleComponent implements OnInit {
     private authService: AuthService,
     public articlesService: ArticlesService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
     
   ) {
     this.authService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
 
-   getArticleDetails(){
+   getArticleDetails(): void{
      this.id = this.activatedRoute.snapshot.params.id;
      if (this.id){
      this.editorService.getOneArticle(this.id).subscribe({
@@ -62,7 +64,6 @@ export class EditArticleComponent implements OnInit {
       authorLastName: this.article?.authorLastName,
       body: this.article?.body,
       imageUrl: [this.article?.imageUrl, [
-        Validators.required,
         Validators.pattern(/^[a-zA-Z\s]+$/),
       ]],
       appUserId: this.article?.appUserId || this.user.id
@@ -78,8 +79,6 @@ export class EditArticleComponent implements OnInit {
   }
   
   onSubmit() {
-    this.error = '';
-    this.notification = '';
     this.articlesService.getArticles$().subscribe({
       next: (res) => {
         this.articles = res;
@@ -87,15 +86,8 @@ export class EditArticleComponent implements OnInit {
         this.articleId = this.form.get('id')?.value;
         if (this.form.valid) {
           if (!this.form.get('id')?.value) {
-            console.log(this.articles.length)
             for (let i = 0; i < this.articles.length; i++) {
-              console.log(this.articles[i].title)
-              console.log(this.title)
-              console.log(this.articles[i].title === this.form.get('title')?.value)
-              console.log(this.articles[i].title == this.form.get('title')?.value)
-
               if (this.articles[i].title === this.form.get('title')?.value) {
-                console.log('Article with this name already exists.')
                 this.error = 'Article with this name already exists.';
                 this.allowCreateEdit = false;
                 break;
@@ -107,7 +99,7 @@ export class EditArticleComponent implements OnInit {
               this.editorService.addArticle(this.form.value).subscribe({
                 next: () => {
                   console.log('new article added')
-                  this.notification = 'New article added!'
+                  this.notificationService.success('New article added!')
                 },
                 error: (res: HttpErrorResponse) => {
                   console.log(res)
@@ -119,14 +111,13 @@ export class EditArticleComponent implements OnInit {
             if (!this.form.pristine) {
               this.editorService.editArticle(this.form.value).subscribe({
                 next: () => {
-                  this.notification = 'Article edited!';
-                },
+                  this.notificationService.success('Article edited!')},
                 error: (res: HttpErrorResponse) => {
                   this.error = res.error;
                 },
               });
             } else {
-              this.error = 'No changes were detected.';
+              this.notificationService.error('No changes were detected.');
             }
           }
         }

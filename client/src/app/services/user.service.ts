@@ -9,7 +9,7 @@ import { User } from '../models/user.model';
 })
 
 export class UserService {
-      userUrl = 'https://localhost:5001/api/user/';
+      userUrl = 'https://localhost:5001/api/users/';
       httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       };
@@ -19,8 +19,8 @@ export class UserService {
             return this.http.get<Article[]>(`${this.userUrl}liked/${id}`);
       }
 
-      addToLiked(article: Article) {
-            return this.http.post(`${this.userUrl}liked`, article, this.httpOptions)
+      addToLiked(userId: number, articleId: number) {
+            return this.http.post(`${this.userUrl}${userId}/liked/${articleId}`, this.httpOptions)
       }
 
       editProfile(user: User) {
@@ -31,7 +31,7 @@ export class UserService {
             return this.http.delete<Article[]>(`${this.userUrl}${userId}/liked/${articleId}`);
       }
 
-      getProfile(id: string): Observable<User>{
+      getProfile(id: number): Observable<User>{
             return this.http.get<User>(`${this.userUrl}profile/${id}`)
       }
 }

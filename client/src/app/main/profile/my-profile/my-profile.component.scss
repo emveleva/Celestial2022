@@ -5,6 +5,20 @@ mat-card {
       width: 70%;
       min-height: 78vh;
 
+      .profile-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 30px;
+
+            .profile-img {
+                  width: 30%;
+
+                  img {
+                        width: 100%;
+                  }
+            }
+      }
 
       .title {
             padding: 15px;
@@ -12,6 +26,11 @@ mat-card {
             font-size: 44px;
             font-weight: 600;
       }
-}
 
- 
+      .button-blue {
+            background-color: #77bef9;
+            color: white;
+            margin: 0 5px;
+            width: 20%;
+      }
+}

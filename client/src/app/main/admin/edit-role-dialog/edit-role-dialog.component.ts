@@ -24,6 +24,7 @@ export class EditRoleDialogComponent implements OnInit, OnDestroy {
     ) { 
         this.user = this.data.user;
         this.roles = this.data.roles;
+        console.log(this.user)
     }
 
     ngOnInit(): void {

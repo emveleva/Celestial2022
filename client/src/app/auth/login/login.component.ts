@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { take } from 'rxjs/operators'
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   
   constructor(private authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private notificationService: NotificationService) { }
 
     ngOnInit(): void {
       this.buildForm();
@@ -32,18 +34,14 @@ export class LoginComponent implements OnInit {
     })
   }
   onSubmit() {
+    if (this.form.valid) {
     this.authService.login(this.form.value).pipe(take(1)).subscribe({
       next: (res) => {
-        console.log('logged')
         this.router.navigate(['/articles']);
       },
       error: (res: HttpErrorResponse) => {
-        if (res.error == 'Incorrect password' || 'Cannot find user') {
-          // this.notificationService.error('Incorrect username or password.');
-        } else {
-          // this.notificationService.error(res.error);
-        }
+          this.notificationService.error('Incorrect username or password.');
       },
     });
-  }
+  }}
 }

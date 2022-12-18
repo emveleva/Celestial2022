@@ -13,7 +13,7 @@
           <td mat-cell *matCellDef="let user"> {{user.role}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="action" >
+        <ng-container matColumnDef="action">
           <th mat-header-cell mat-sort-header *matHeaderCellDef class="width-15"> Action </th>
           <td mat-cell *matCellDef="let user">
             <button mat-raised-button class="button-mint" (click)="openRolesDialog(user, user.role.split(', '))">Edit

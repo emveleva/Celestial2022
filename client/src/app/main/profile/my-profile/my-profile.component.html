@@ -1,11 +1,17 @@
 <main>
       <mat-card>
-            <div class="article-container">
-                  <h1 class="title">My Profile</h1>
-                  <p>{{user.firstName}}</p>
-                  <h5>{{user.lastName}}</h5>
-                  <button mat-raised-button class="button-purple" (click)="onEdit(user.id)">Edit</button>
-                  <button mat-raised-button class="button-purple" (click)="onDelete(article.id.toString())">Delete</button>
+            <h1 class="title">My Profile</h1>
+            <div class="profile-container">
+                  <div class="profile-img">
+                        <img [src]="user.imageUrl ? user.imageUrl : '/assets/user-img.png'" alt="">
+                  </div>
+                  <div class="profile-info">
+                        <h3><span>Username:</span> {{user.userName}}</h3>
+                        <h3><span>First Name:</span> {{user.firstName}}</h3>
+                        <h3><span>Last Name:</span> {{user.lastName}}</h3>
+                  </div>
             </div>
+            <button mat-raised-button class="button-blue" (click)="onEdit(user.id)">Edit</button>
+            <button mat-raised-button class="button-blue" (click)="onLiked(user.id)">Liked Articles</button>
       </mat-card>
 </main>

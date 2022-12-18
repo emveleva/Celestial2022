@@ -18,7 +18,7 @@ export class ArticlesService {
             return this.http.get<Article[]>(`${this.articlesUrl}`);
       }
 
-      getOneArticle(id: string):  Observable<Article>{
+      getOneArticle(id: number):  Observable<Article>{
             return this.http.get<Article>(`${this.articlesUrl}${id}`)
       }
 }

@@ -1,7 +1,7 @@
 <main>
       <mat-card>
             <h1 class="title">Edit My Profile</h1>
-            <form [formGroup]="form">
+            <form [formGroup]="form" *ngIf="form" (submit)="onSubmit()">
                   <mat-form-field>
                         <mat-label>First Name</mat-label>
                         <input matInput formControlName="firstName" required>
@@ -11,11 +11,13 @@
                         <input matInput formControlName="lastName" required>
                   </mat-form-field>
                   <mat-form-field>
-                        <mat-label>Email</mat-label>
-                        <input matInput formControlName="email" type="email" required>
+                        <mat-label>Image Url</mat-label>
+                        <input matInput formControlName="imageUrl">
                   </mat-form-field>
+                  <div class="buttons">
                   <button mat-raised-button class="button-red" type="button" (click)="onBack()">Cancel</button>
-                  <button mat-raised-button class="button-purple" type="submit">Edit</button>
+                  <button mat-raised-button class="button-purple" type="submit">Confirm</button>
+                  </div>
             </form>
       </mat-card>
 </main>

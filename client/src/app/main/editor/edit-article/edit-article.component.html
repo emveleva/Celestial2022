@@ -1,7 +1,7 @@
 <main>
   <mat-card class="article-container">
-    <h1 class="title">Add New Article</h1>
-    <form [formGroup]="form" class="normal-form" (submit)="onSubmit()">
+    <h1 class="title">Edit Article</h1>
+    <form [formGroup]="form" *ngIf="form" class="normal-form" (submit)="onSubmit()">
       <div class="upper-container">
         <mat-form-field>
           <mat-label>Title</mat-label>

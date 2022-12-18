@@ -1,12 +1,19 @@
 <main>
       <mat-card class="articles-list">
             <h1 class="title">Articles</h1>
-            <div *ngIf="articles">
+            <div *ngIf="articles && likedArticles">
                   <div *ngFor="let article of articles" class="articles">
-                        <app-article [article]="article"></app-article>
+                        <div class="article-container">
+                              <h5 class="created-date">{{article.createdOn | date}}</h5>
+                              <h2 class="article-title">{{article.title}}</h2>
+                              <p class="article-body">{{article.body}}</p>
+                              <h4>{{article.authorFirstName}} {{article.authorLastName}}</h4>
+                              <button *ngIf="!isLiked(article.id)" class="button-purple"mat-raised-button (click)="onLike(article.id)">Like Article</button>
+                              <button *ngIf="isLiked(article.id)" class="button-red" mat-raised-button (click)="onUnlike(article.id)">Unlike Article</button>
+                        </div>
                   </div>
             </div>
-            <div class="empty-page" *ngIf="articles?.length === 0">
+            <div class="empty-page" *ngIf="!articles || articles?.length === 0">
                   <div><img src="../../../../assets/empty.png" alt="open-book"></div>
                   <h2>There are no articles created yet.</h2>
             </div>
