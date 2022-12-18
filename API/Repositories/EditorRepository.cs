@@ -8,7 +8,6 @@ namespace API.Repositories
     public class EditorRepository : IEditorRepository
     {
         private readonly CelestialDbContext _context;
-        private readonly IUnitOfWork _unitOfWork;
 
         public EditorRepository(CelestialDbContext context)
         {
@@ -17,10 +16,9 @@ namespace API.Repositories
 
         public async void DeleteArticle(int articleId)
         {
-            var article = await _context.Articles.FirstOrDefaultAsync(a => a.Id == articleId);
+            var article = await _context.Articles.FindAsync(articleId);
              _context.Articles.Remove(article);
         }
-
         public void EditArticle(Article article)
         {
             _context.Entry(article).State = EntityState.Modified;

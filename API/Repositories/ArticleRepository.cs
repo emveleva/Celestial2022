@@ -8,7 +8,6 @@ namespace API.Repositories
     public class ArticleRepository : IArticleRepository
     {
         private readonly CelestialDbContext _context;
-        private readonly IUnitOfWork _unitOfWork;
 
         public ArticleRepository(CelestialDbContext context)
         {

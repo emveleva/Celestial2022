@@ -13,14 +13,11 @@ namespace API.Controllers
         public UsersController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-
-
         }
 
         [HttpPost("liked")]
         public async Task<ActionResult> AddToLiked(LikedArticle likedArticle)
         {
-
             await _unitOfWork.UserRepository.AddToLiked(likedArticle);
 
             if (await _unitOfWork.Complete()) return NoContent();
@@ -61,9 +58,9 @@ namespace API.Controllers
         public async Task<ActionResult> UpdateUserProfile(AppUser user)
         {
 
-            var result = await _unitOfWork.UserRepository.UpdateUserProfile(user);
+            _unitOfWork.UserRepository.UpdateUserProfile(user);
 
-            if (!result.Succeeded) return BadRequest(result.Errors);
+            if (await _unitOfWork.Complete()) return NoContent();
 
             return Ok("All good");
         }

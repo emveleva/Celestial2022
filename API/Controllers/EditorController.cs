@@ -13,12 +13,10 @@ namespace API.Controllers
 {    
     public class EditorController : BaseApiController
     {
-        private readonly CelestialDbContext _context;
         private readonly IUnitOfWork _unitOfWork;
 
-        public EditorController(CelestialDbContext context, IUnitOfWork unitOfWork)
+        public EditorController(IUnitOfWork unitOfWork)
         {
-            _context = context;
             _unitOfWork = unitOfWork;
         }
 

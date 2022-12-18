@@ -12,10 +12,10 @@ namespace API.Data
       {
             public CelestialDbContext(DbContextOptions<CelestialDbContext> options) : base(options)
             {
-                this.Database.Migrate();
+          
             }
 
-            public DbSet<Article> Articles { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
             public DbSet<LikedArticle> LikedArticles { get; set;}
            

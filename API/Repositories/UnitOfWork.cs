@@ -13,14 +13,14 @@ namespace API.Data
         private readonly CelestialDbContext _context;
 
         private readonly UserManager<AppUser> _userManager;
-        public UnitOfWork(CelestialDbContext context, UserManager<AppUser> userManager)
+
+        public UnitOfWork(CelestialDbContext context)
         {
             _context = context;
-            _userManager = userManager;
+         
         }
 
-        public IUserRepository UserRepository => new UserRepository(_context, _userManager);
-
+        public IUserRepository UserRepository => new UserRepository(_context);
         public IEditorRepository EditorRepository => new EditorRepository(_context);
         public IArticleRepository ArticleRepository => new ArticleRepository(_context);
 

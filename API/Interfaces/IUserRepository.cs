@@ -17,6 +17,6 @@ namespace API.Interfaces
 
         Task<AppUser> GetUserProfile(int id);
 
-        Task<IdentityResult> UpdateUserProfile(AppUser user);
+        void UpdateUserProfile(AppUser user);
     }
 }

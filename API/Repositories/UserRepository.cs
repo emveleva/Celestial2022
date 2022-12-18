@@ -15,14 +15,11 @@ namespace API.Repositories
     {
         private readonly CelestialDbContext _context;
 
-        private readonly UserManager<AppUser> _userManager;
-
-        public UserRepository(CelestialDbContext context, UserManager<AppUser> userManager)
+        public UserRepository(CelestialDbContext context)
         {
             _context = context;
-
-            _userManager = userManager;
         }
+
         public  async Task AddToLiked(LikedArticle likedArticle)
         {
 
@@ -91,15 +88,9 @@ namespace API.Repositories
 
             return user;
         }
-        public async Task<IdentityResult> UpdateUserProfile(AppUser appUser)
+        public void UpdateUserProfile(AppUser appUser)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == appUser.Id);
-
-                user.FirstName = appUser.FirstName;
-                user.LastName = appUser.LastName;
-                user.Email = appUser.Email;
-
-             return await _userManager.UpdateAsync(user);
+            _context.Entry(appUser).State = EntityState.Modified; ;
         }
 
     }
