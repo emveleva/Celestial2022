@@ -20,7 +20,7 @@ namespace API.DTOs
         public string ImageUrl { get; set; }
 
         [Required]
-        [StringLength(8, MinimumLength = 4)]
+        [MinLength(6)]
         public string Password { get; set; }
 
 

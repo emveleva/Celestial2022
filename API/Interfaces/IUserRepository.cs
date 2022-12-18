@@ -9,7 +9,7 @@ namespace API.Interfaces
 {
     public interface IUserRepository
     {
-        Task AddToLiked(LikedArticle likedArticle);
+        Task AddToLiked(int userId, int articleId);
 
         Task<IEnumerable<Article>> GetLikedArticles(int userId);
 

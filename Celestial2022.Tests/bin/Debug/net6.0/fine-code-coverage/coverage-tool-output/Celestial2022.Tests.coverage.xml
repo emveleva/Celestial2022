@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.7345999999999999" branch-rate="0.1666" version="1.9" timestamp="1671331918" lines-covered="936" lines-valid="1274" branches-covered="9" branches-valid="54">
+<coverage line-rate="0.7484999999999999" branch-rate="0.1666" version="1.9" timestamp="1671332590" lines-covered="932" lines-valid="1245" branches-covered="9" branches-valid="54">
   <sources>
     <source>C:\Users\User\</source>
   </sources>
   <packages>
-    <package name="API" line-rate="0.3333" branch-rate="0.07139999999999999" complexity="135">
+    <package name="API" line-rate="0.3547" branch-rate="0.07139999999999999" complexity="135">
       <classes>
         <class name="Program/&lt;&lt;Main&gt;$&gt;d__0" filename="Desktop\projects\Celestial2022\API\Program.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
@@ -13,58 +13,32 @@
                 <line number="14" hits="0" branch="False" />
                 <line number="18" hits="0" branch="False" />
                 <line number="23" hits="0" branch="False" />
-                <line number="26" hits="0" branch="False" />
-                <line number="27" hits="0" branch="False" />
-                <line number="28" hits="0" branch="False" />
-                <line number="29" hits="0" branch="False" />
-                <line number="30" hits="0" branch="False" />
-                <line number="31" hits="0" branch="False" />
-                <line number="32" hits="0" branch="False" />
-                <line number="33" hits="0" branch="False" />
-                <line number="34" hits="0" branch="False" />
-                <line number="36" hits="0" branch="False" />
-                <line number="37" hits="0" branch="False" />
-                <line number="38" hits="0" branch="False" />
-                <line number="39" hits="0" branch="False" />
-                <line number="40" hits="0" branch="False" />
-                <line number="41" hits="0" branch="False" />
-                <line number="42" hits="0" branch="False" />
-                <line number="43" hits="0" branch="False" />
-                <line number="44" hits="0" branch="False" />
-                <line number="45" hits="0" branch="False" />
-                <line number="46" hits="0" branch="False" />
-                <line number="47" hits="0" branch="False" />
-                <line number="49" hits="0" branch="False" />
-                <line number="50" hits="0" branch="False" />
-                <line number="51" hits="0" branch="False" />
-                <line number="52" hits="0" branch="False" />
-                <line number="53" hits="0" branch="False" />
-                <line number="55" hits="0" branch="False" />
-                <line number="56" hits="0" branch="False" />
+                <line number="24" hits="0" branch="False" />
                 <line number="57" hits="0" branch="False" />
                 <line number="58" hits="0" branch="False" />
                 <line number="60" hits="0" branch="False" />
-                <line number="61" hits="0" branch="False" />
-                <line number="63" hits="0" branch="False" />
-                <line number="66" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="63" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
-                    <condition number="464" type="jump" coverage="0%" />
+                    <condition number="178" type="jump" coverage="0%" />
                   </conditions>
                 </line>
+                <line number="64" hits="0" branch="False" />
+                <line number="65" hits="0" branch="False" />
+                <line number="66" hits="0" branch="False" />
                 <line number="67" hits="0" branch="False" />
-                <line number="68" hits="0" branch="False" />
                 <line number="69" hits="0" branch="False" />
-                <line number="70" hits="0" branch="False" />
+                <line number="71" hits="0" branch="False" />
                 <line number="72" hits="0" branch="False" />
+                <line number="73" hits="0" branch="False" />
                 <line number="74" hits="0" branch="False" />
-                <line number="75" hits="0" branch="False" />
                 <line number="76" hits="0" branch="False" />
-                <line number="77" hits="0" branch="False" />
+                <line number="78" hits="0" branch="False" />
                 <line number="79" hits="0" branch="False" />
                 <line number="81" hits="0" branch="False" />
                 <line number="82" hits="0" branch="False" />
                 <line number="84" hits="0" branch="False" />
                 <line number="85" hits="0" branch="False" />
+                <line number="86" hits="0" branch="False" />
                 <line number="87" hits="0" branch="False" />
                 <line number="88" hits="0" branch="False" />
                 <line number="89" hits="0" branch="False" />
@@ -74,11 +48,8 @@
                 <line number="93" hits="0" branch="False" />
                 <line number="94" hits="0" branch="False" />
                 <line number="95" hits="0" branch="False" />
-                <line number="96" hits="0" branch="False" />
                 <line number="97" hits="0" branch="False" />
                 <line number="98" hits="0" branch="False" />
-                <line number="100" hits="0" branch="False" />
-                <line number="101" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
@@ -86,58 +57,32 @@
             <line number="14" hits="0" branch="False" />
             <line number="18" hits="0" branch="False" />
             <line number="23" hits="0" branch="False" />
-            <line number="26" hits="0" branch="False" />
-            <line number="27" hits="0" branch="False" />
-            <line number="28" hits="0" branch="False" />
-            <line number="29" hits="0" branch="False" />
-            <line number="30" hits="0" branch="False" />
-            <line number="31" hits="0" branch="False" />
-            <line number="32" hits="0" branch="False" />
-            <line number="33" hits="0" branch="False" />
-            <line number="34" hits="0" branch="False" />
-            <line number="36" hits="0" branch="False" />
-            <line number="37" hits="0" branch="False" />
-            <line number="38" hits="0" branch="False" />
-            <line number="39" hits="0" branch="False" />
-            <line number="40" hits="0" branch="False" />
-            <line number="41" hits="0" branch="False" />
-            <line number="42" hits="0" branch="False" />
-            <line number="43" hits="0" branch="False" />
-            <line number="44" hits="0" branch="False" />
-            <line number="45" hits="0" branch="False" />
-            <line number="46" hits="0" branch="False" />
-            <line number="47" hits="0" branch="False" />
-            <line number="49" hits="0" branch="False" />
-            <line number="50" hits="0" branch="False" />
-            <line number="51" hits="0" branch="False" />
-            <line number="52" hits="0" branch="False" />
-            <line number="53" hits="0" branch="False" />
-            <line number="55" hits="0" branch="False" />
-            <line number="56" hits="0" branch="False" />
+            <line number="24" hits="0" branch="False" />
             <line number="57" hits="0" branch="False" />
             <line number="58" hits="0" branch="False" />
             <line number="60" hits="0" branch="False" />
-            <line number="61" hits="0" branch="False" />
-            <line number="63" hits="0" branch="False" />
-            <line number="66" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="63" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
-                <condition number="464" type="jump" coverage="0%" />
+                <condition number="178" type="jump" coverage="0%" />
               </conditions>
             </line>
+            <line number="64" hits="0" branch="False" />
+            <line number="65" hits="0" branch="False" />
+            <line number="66" hits="0" branch="False" />
             <line number="67" hits="0" branch="False" />
-            <line number="68" hits="0" branch="False" />
             <line number="69" hits="0" branch="False" />
-            <line number="70" hits="0" branch="False" />
+            <line number="71" hits="0" branch="False" />
             <line number="72" hits="0" branch="False" />
+            <line number="73" hits="0" branch="False" />
             <line number="74" hits="0" branch="False" />
-            <line number="75" hits="0" branch="False" />
             <line number="76" hits="0" branch="False" />
-            <line number="77" hits="0" branch="False" />
+            <line number="78" hits="0" branch="False" />
             <line number="79" hits="0" branch="False" />
             <line number="81" hits="0" branch="False" />
             <line number="82" hits="0" branch="False" />
             <line number="84" hits="0" branch="False" />
             <line number="85" hits="0" branch="False" />
+            <line number="86" hits="0" branch="False" />
             <line number="87" hits="0" branch="False" />
             <line number="88" hits="0" branch="False" />
             <line number="89" hits="0" branch="False" />
@@ -147,11 +92,8 @@
             <line number="93" hits="0" branch="False" />
             <line number="94" hits="0" branch="False" />
             <line number="95" hits="0" branch="False" />
-            <line number="96" hits="0" branch="False" />
             <line number="97" hits="0" branch="False" />
             <line number="98" hits="0" branch="False" />
-            <line number="100" hits="0" branch="False" />
-            <line number="101" hits="0" branch="False" />
           </lines>
         </class>
         <class name="API.Services.TokenService" filename="Desktop\projects\Celestial2022\API\Services\TokenService.cs" line-rate="0" branch-rate="1" complexity="1">
@@ -728,30 +670,38 @@
           <methods>
             <method name="AddApplicationServices" signature="(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="12" hits="0" branch="False" />
                 <line number="13" hits="0" branch="False" />
                 <line number="14" hits="0" branch="False" />
+                <line number="15" hits="0" branch="False" />
                 <line number="16" hits="0" branch="False" />
                 <line number="17" hits="0" branch="False" />
                 <line number="18" hits="0" branch="False" />
                 <line number="19" hits="0" branch="False" />
-                <line number="20" hits="0" branch="False" />
                 <line number="21" hits="0" branch="False" />
                 <line number="22" hits="0" branch="False" />
+                <line number="23" hits="0" branch="False" />
+                <line number="24" hits="0" branch="False" />
+                <line number="25" hits="0" branch="False" />
+                <line number="26" hits="0" branch="False" />
+                <line number="27" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="12" hits="0" branch="False" />
             <line number="13" hits="0" branch="False" />
             <line number="14" hits="0" branch="False" />
+            <line number="15" hits="0" branch="False" />
             <line number="16" hits="0" branch="False" />
             <line number="17" hits="0" branch="False" />
             <line number="18" hits="0" branch="False" />
             <line number="19" hits="0" branch="False" />
-            <line number="20" hits="0" branch="False" />
             <line number="21" hits="0" branch="False" />
             <line number="22" hits="0" branch="False" />
+            <line number="23" hits="0" branch="False" />
+            <line number="24" hits="0" branch="False" />
+            <line number="25" hits="0" branch="False" />
+            <line number="26" hits="0" branch="False" />
+            <line number="27" hits="0" branch="False" />
           </lines>
         </class>
         <class name="API.Extensions.IdentityServiceExtensions" filename="Desktop\projects\Celestial2022\API\Extensions\IdentityServiceExtensions.cs" line-rate="0" branch-rate="1" complexity="1">
@@ -780,18 +730,13 @@
                 <line number="34" hits="0" branch="False" />
                 <line number="35" hits="0" branch="False" />
                 <line number="36" hits="0" branch="False" />
-                <line number="37" hits="0" branch="False" />
                 <line number="38" hits="0" branch="False" />
                 <line number="39" hits="0" branch="False" />
                 <line number="40" hits="0" branch="False" />
                 <line number="41" hits="0" branch="False" />
-                <line number="43" hits="0" branch="False" />
+                <line number="42" hits="0" branch="False" />
                 <line number="44" hits="0" branch="False" />
                 <line number="45" hits="0" branch="False" />
-                <line number="46" hits="0" branch="False" />
-                <line number="47" hits="0" branch="False" />
-                <line number="49" hits="0" branch="False" />
-                <line number="50" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
@@ -818,18 +763,13 @@
             <line number="34" hits="0" branch="False" />
             <line number="35" hits="0" branch="False" />
             <line number="36" hits="0" branch="False" />
-            <line number="37" hits="0" branch="False" />
             <line number="38" hits="0" branch="False" />
             <line number="39" hits="0" branch="False" />
             <line number="40" hits="0" branch="False" />
             <line number="41" hits="0" branch="False" />
-            <line number="43" hits="0" branch="False" />
+            <line number="42" hits="0" branch="False" />
             <line number="44" hits="0" branch="False" />
             <line number="45" hits="0" branch="False" />
-            <line number="46" hits="0" branch="False" />
-            <line number="47" hits="0" branch="False" />
-            <line number="49" hits="0" branch="False" />
-            <line number="50" hits="0" branch="False" />
           </lines>
         </class>
         <class name="API.Errors.ApiException" filename="Desktop\projects\Celestial2022\API\Errors\ApiException.cs" line-rate="0" branch-rate="1" complexity="4">
@@ -1175,7 +1115,7 @@
             </method>
             <method name="get_LikedArticles" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="20" hits="30" branch="False" />
+                <line number="20" hits="29" branch="False" />
               </lines>
             </method>
             <method name="OnModelCreating" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="1" branch-rate="1" complexity="1">
@@ -1201,7 +1141,7 @@
           </methods>
           <lines>
             <line number="18" hits="58" branch="False" />
-            <line number="20" hits="30" branch="False" />
+            <line number="20" hits="29" branch="False" />
             <line number="23" hits="1" branch="False" />
             <line number="25" hits="1" branch="False" />
             <line number="26" hits="1" branch="False" />
@@ -1952,7 +1892,7 @@
         </class>
       </classes>
     </package>
-    <package name="Celestial2022.Tests" line-rate="0.9922" branch-rate="0.5" complexity="43">
+    <package name="Celestial2022.Tests" line-rate="0.9858" branch-rate="0.5" complexity="43">
       <classes>
         <class name="AutoGeneratedProgram" filename=".nuget\packages\microsoft.net.test.sdk\17.3.2\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.Program.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
@@ -3536,9 +3476,9 @@
             <line number="30" hits="5" branch="False" />
           </lines>
         </class>
-        <class name="Celestial2022.Tests.Controllers.UserControllerTests/&lt;AddToLiked_ShouldAddArticleToUserLiked&gt;d__3" filename="Desktop\projects\Celestial2022\Celestial2022.Tests\Controllers\UserControllerTests.cs" line-rate="0.9736" branch-rate="1" complexity="1">
+        <class name="Celestial2022.Tests.Controllers.UserControllerTests/&lt;AddToLiked_ShouldAddArticleToUserLiked&gt;d__3" filename="Desktop\projects\Celestial2022\Celestial2022.Tests\Controllers\UserControllerTests.cs" line-rate="0.8461" branch-rate="1" complexity="1">
           <methods>
-            <method name="MoveNext" signature="()" line-rate="0.9736" branch-rate="1" complexity="1">
+            <method name="MoveNext" signature="()" line-rate="0.8461" branch-rate="1" complexity="1">
               <lines>
                 <line number="34" hits="1" branch="False" />
                 <line number="36" hits="1" branch="False" />
@@ -3573,11 +3513,12 @@
                 <line number="66" hits="1" branch="False" />
                 <line number="68" hits="1" branch="False" />
                 <line number="71" hits="1" branch="False" />
-                <line number="72" hits="1" branch="False" />
-                <line number="76" hits="1" branch="False" />
-                <line number="77" hits="1" branch="False" />
-                <line number="78" hits="1" branch="False" />
+                <line number="72" hits="0" branch="False" />
+                <line number="76" hits="0" branch="False" />
+                <line number="77" hits="0" branch="False" />
+                <line number="78" hits="0" branch="False" />
                 <line number="79" hits="0" branch="False" />
+                <line number="80" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
@@ -3615,19 +3556,19 @@
             <line number="66" hits="1" branch="False" />
             <line number="68" hits="1" branch="False" />
             <line number="71" hits="1" branch="False" />
-            <line number="72" hits="1" branch="False" />
-            <line number="76" hits="1" branch="False" />
-            <line number="77" hits="1" branch="False" />
-            <line number="78" hits="1" branch="False" />
+            <line number="72" hits="0" branch="False" />
+            <line number="76" hits="0" branch="False" />
+            <line number="77" hits="0" branch="False" />
+            <line number="78" hits="0" branch="False" />
             <line number="79" hits="0" branch="False" />
+            <line number="80" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Celestial2022.Tests.Controllers.UserControllerTests/&lt;EditProfile_ShouldCorrectlyEditUserProfile&gt;d__7" filename="Desktop\projects\Celestial2022\Celestial2022.Tests\Controllers\UserControllerTests.cs" line-rate="1" branch-rate="0.5" complexity="4">
           <methods>
             <method name="MoveNext" signature="()" line-rate="1" branch-rate="0.5" complexity="4">
               <lines>
-                <line number="204" hits="1" branch="False" />
-                <line number="206" hits="1" branch="False" />
+                <line number="205" hits="1" branch="False" />
                 <line number="207" hits="1" branch="False" />
                 <line number="208" hits="1" branch="False" />
                 <line number="209" hits="1" branch="False" />
@@ -3640,29 +3581,29 @@
                 <line number="216" hits="1" branch="False" />
                 <line number="217" hits="1" branch="False" />
                 <line number="218" hits="1" branch="False" />
-                <line number="220" hits="1" branch="False" />
-                <line number="222" hits="1" branch="False" />
-                <line number="224" hits="1" branch="False" />
+                <line number="219" hits="1" branch="False" />
+                <line number="221" hits="1" branch="False" />
+                <line number="223" hits="1" branch="False" />
                 <line number="225" hits="1" branch="False" />
-                <line number="228" hits="1" branch="False" />
-                <line number="232" hits="1" branch="False" />
-                <line number="233" hits="1" branch="True" condition-coverage="50% (1/2)">
+                <line number="226" hits="1" branch="False" />
+                <line number="229" hits="1" branch="False" />
+                <line number="233" hits="1" branch="False" />
+                <line number="234" hits="1" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
                     <condition number="581" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="234" hits="1" branch="True" condition-coverage="50% (1/2)">
+                <line number="235" hits="1" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
                     <condition number="615" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="235" hits="1" branch="False" />
+                <line number="236" hits="1" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="204" hits="1" branch="False" />
-            <line number="206" hits="1" branch="False" />
+            <line number="205" hits="1" branch="False" />
             <line number="207" hits="1" branch="False" />
             <line number="208" hits="1" branch="False" />
             <line number="209" hits="1" branch="False" />
@@ -3675,31 +3616,31 @@
             <line number="216" hits="1" branch="False" />
             <line number="217" hits="1" branch="False" />
             <line number="218" hits="1" branch="False" />
-            <line number="220" hits="1" branch="False" />
-            <line number="222" hits="1" branch="False" />
-            <line number="224" hits="1" branch="False" />
+            <line number="219" hits="1" branch="False" />
+            <line number="221" hits="1" branch="False" />
+            <line number="223" hits="1" branch="False" />
             <line number="225" hits="1" branch="False" />
-            <line number="228" hits="1" branch="False" />
-            <line number="232" hits="1" branch="False" />
-            <line number="233" hits="1" branch="True" condition-coverage="50% (1/2)">
+            <line number="226" hits="1" branch="False" />
+            <line number="229" hits="1" branch="False" />
+            <line number="233" hits="1" branch="False" />
+            <line number="234" hits="1" branch="True" condition-coverage="50% (1/2)">
               <conditions>
                 <condition number="581" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="234" hits="1" branch="True" condition-coverage="50% (1/2)">
+            <line number="235" hits="1" branch="True" condition-coverage="50% (1/2)">
               <conditions>
                 <condition number="615" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="235" hits="1" branch="False" />
+            <line number="236" hits="1" branch="False" />
           </lines>
         </class>
         <class name="Celestial2022.Tests.Controllers.UserControllerTests/&lt;GetUserLikedArticles_ShouldReturn_UserLikedArticles&gt;d__4" filename="Desktop\projects\Celestial2022\Celestial2022.Tests\Controllers\UserControllerTests.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="83" hits="1" branch="False" />
-                <line number="85" hits="1" branch="False" />
+                <line number="84" hits="1" branch="False" />
                 <line number="86" hits="1" branch="False" />
                 <line number="87" hits="1" branch="False" />
                 <line number="88" hits="1" branch="False" />
@@ -3719,7 +3660,7 @@
                 <line number="102" hits="1" branch="False" />
                 <line number="103" hits="1" branch="False" />
                 <line number="104" hits="1" branch="False" />
-                <line number="106" hits="1" branch="False" />
+                <line number="105" hits="1" branch="False" />
                 <line number="107" hits="1" branch="False" />
                 <line number="108" hits="1" branch="False" />
                 <line number="109" hits="1" branch="False" />
@@ -3729,16 +3670,16 @@
                 <line number="113" hits="1" branch="False" />
                 <line number="114" hits="1" branch="False" />
                 <line number="115" hits="1" branch="False" />
-                <line number="117" hits="1" branch="False" />
-                <line number="122" hits="1" branch="False" />
-                <line number="124" hits="1" branch="False" />
+                <line number="116" hits="1" branch="False" />
+                <line number="118" hits="1" branch="False" />
+                <line number="123" hits="1" branch="False" />
                 <line number="125" hits="1" branch="False" />
+                <line number="126" hits="1" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="83" hits="1" branch="False" />
-            <line number="85" hits="1" branch="False" />
+            <line number="84" hits="1" branch="False" />
             <line number="86" hits="1" branch="False" />
             <line number="87" hits="1" branch="False" />
             <line number="88" hits="1" branch="False" />
@@ -3758,7 +3699,7 @@
             <line number="102" hits="1" branch="False" />
             <line number="103" hits="1" branch="False" />
             <line number="104" hits="1" branch="False" />
-            <line number="106" hits="1" branch="False" />
+            <line number="105" hits="1" branch="False" />
             <line number="107" hits="1" branch="False" />
             <line number="108" hits="1" branch="False" />
             <line number="109" hits="1" branch="False" />
@@ -3768,18 +3709,18 @@
             <line number="113" hits="1" branch="False" />
             <line number="114" hits="1" branch="False" />
             <line number="115" hits="1" branch="False" />
-            <line number="117" hits="1" branch="False" />
-            <line number="122" hits="1" branch="False" />
-            <line number="124" hits="1" branch="False" />
+            <line number="116" hits="1" branch="False" />
+            <line number="118" hits="1" branch="False" />
+            <line number="123" hits="1" branch="False" />
             <line number="125" hits="1" branch="False" />
+            <line number="126" hits="1" branch="False" />
           </lines>
         </class>
         <class name="Celestial2022.Tests.Controllers.UserControllerTests/&lt;GetUser_WithValidId_ShouldReturnUser&gt;d__6" filename="Desktop\projects\Celestial2022\Celestial2022.Tests\Controllers\UserControllerTests.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="177" hits="1" branch="False" />
-                <line number="179" hits="1" branch="False" />
+                <line number="178" hits="1" branch="False" />
                 <line number="180" hits="1" branch="False" />
                 <line number="181" hits="1" branch="False" />
                 <line number="182" hits="1" branch="False" />
@@ -3792,16 +3733,16 @@
                 <line number="189" hits="1" branch="False" />
                 <line number="190" hits="1" branch="False" />
                 <line number="191" hits="1" branch="False" />
-                <line number="193" hits="1" branch="False" />
-                <line number="196" hits="1" branch="False" />
-                <line number="199" hits="1" branch="False" />
+                <line number="192" hits="1" branch="False" />
+                <line number="194" hits="1" branch="False" />
+                <line number="197" hits="1" branch="False" />
                 <line number="200" hits="1" branch="False" />
+                <line number="201" hits="1" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="177" hits="1" branch="False" />
-            <line number="179" hits="1" branch="False" />
+            <line number="178" hits="1" branch="False" />
             <line number="180" hits="1" branch="False" />
             <line number="181" hits="1" branch="False" />
             <line number="182" hits="1" branch="False" />
@@ -3814,18 +3755,18 @@
             <line number="189" hits="1" branch="False" />
             <line number="190" hits="1" branch="False" />
             <line number="191" hits="1" branch="False" />
-            <line number="193" hits="1" branch="False" />
-            <line number="196" hits="1" branch="False" />
-            <line number="199" hits="1" branch="False" />
+            <line number="192" hits="1" branch="False" />
+            <line number="194" hits="1" branch="False" />
+            <line number="197" hits="1" branch="False" />
             <line number="200" hits="1" branch="False" />
+            <line number="201" hits="1" branch="False" />
           </lines>
         </class>
         <class name="Celestial2022.Tests.Controllers.UserControllerTests/&lt;RemoveArticle_WithCorrectId_ShouldRemoveArticle&gt;d__5" filename="Desktop\projects\Celestial2022\Celestial2022.Tests\Controllers\UserControllerTests.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="130" hits="1" branch="False" />
-                <line number="132" hits="1" branch="False" />
+                <line number="131" hits="1" branch="False" />
                 <line number="133" hits="1" branch="False" />
                 <line number="134" hits="1" branch="False" />
                 <line number="135" hits="1" branch="False" />
@@ -3845,7 +3786,7 @@
                 <line number="149" hits="1" branch="False" />
                 <line number="150" hits="1" branch="False" />
                 <line number="151" hits="1" branch="False" />
-                <line number="153" hits="1" branch="False" />
+                <line number="152" hits="1" branch="False" />
                 <line number="154" hits="1" branch="False" />
                 <line number="155" hits="1" branch="False" />
                 <line number="156" hits="1" branch="False" />
@@ -3856,17 +3797,17 @@
                 <line number="161" hits="1" branch="False" />
                 <line number="162" hits="1" branch="False" />
                 <line number="163" hits="1" branch="False" />
-                <line number="167" hits="1" branch="False" />
+                <line number="164" hits="1" branch="False" />
                 <line number="168" hits="1" branch="False" />
-                <line number="171" hits="1" branch="False" />
+                <line number="169" hits="1" branch="False" />
                 <line number="172" hits="1" branch="False" />
                 <line number="173" hits="1" branch="False" />
+                <line number="174" hits="1" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="130" hits="1" branch="False" />
-            <line number="132" hits="1" branch="False" />
+            <line number="131" hits="1" branch="False" />
             <line number="133" hits="1" branch="False" />
             <line number="134" hits="1" branch="False" />
             <line number="135" hits="1" branch="False" />
@@ -3886,7 +3827,7 @@
             <line number="149" hits="1" branch="False" />
             <line number="150" hits="1" branch="False" />
             <line number="151" hits="1" branch="False" />
-            <line number="153" hits="1" branch="False" />
+            <line number="152" hits="1" branch="False" />
             <line number="154" hits="1" branch="False" />
             <line number="155" hits="1" branch="False" />
             <line number="156" hits="1" branch="False" />
@@ -3897,11 +3838,12 @@
             <line number="161" hits="1" branch="False" />
             <line number="162" hits="1" branch="False" />
             <line number="163" hits="1" branch="False" />
-            <line number="167" hits="1" branch="False" />
+            <line number="164" hits="1" branch="False" />
             <line number="168" hits="1" branch="False" />
-            <line number="171" hits="1" branch="False" />
+            <line number="169" hits="1" branch="False" />
             <line number="172" hits="1" branch="False" />
             <line number="173" hits="1" branch="False" />
+            <line number="174" hits="1" branch="False" />
           </lines>
         </class>
       </classes>

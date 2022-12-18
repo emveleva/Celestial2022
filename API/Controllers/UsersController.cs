@@ -15,10 +15,10 @@ namespace API.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpPost("liked")]
-        public async Task<ActionResult> AddToLiked(LikedArticle likedArticle)
+        [HttpPost("{userId}/liked/{articleId}")]
+        public async Task<ActionResult> AddToLiked(int userId, int articleId)
         {
-            await _unitOfWork.UserRepository.AddToLiked(likedArticle);
+            await _unitOfWork.UserRepository.AddToLiked(userId, articleId);
 
             if (await _unitOfWork.Complete()) return NoContent();
 
@@ -31,14 +31,15 @@ namespace API.Controllers
         {
             var articles = await _unitOfWork.UserRepository.GetLikedArticles(id);
 
-            return Ok(articles);
+            if (articles != null) return Ok(articles);
+            return Ok(new List<Article>());
         }
 
-        [HttpDelete("liked/{id}")]
+        [HttpDelete("{userId}/liked/{articleId}")]
 
-        public async Task<ActionResult> RemoveFromLiked(int articleId, int id)
+        public async Task<ActionResult> RemoveFromLiked(int articleId, int userId)
         {
-            await _unitOfWork.UserRepository.RemoveFromLiked(articleId, id);
+            await _unitOfWork.UserRepository.RemoveFromLiked(articleId, userId);
 
             if (await _unitOfWork.Complete()) return NoContent();
 
@@ -62,7 +63,7 @@ namespace API.Controllers
 
             if (await _unitOfWork.Complete()) return NoContent();
 
-            return Ok("All good");
+            return BadRequest("Failed to update article");
         }
     }
 }

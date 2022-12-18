@@ -16,7 +16,7 @@ namespace API.Repositories
 
         public async void DeleteArticle(int articleId)
         {
-            var article = await _context.Articles.FindAsync(articleId);
+            var article = await _context.Articles.FirstOrDefaultAsync(a => a.Id == articleId);
              _context.Articles.Remove(article);
         }
         public void EditArticle(Article article)

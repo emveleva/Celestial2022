@@ -7,6 +7,7 @@ using API.Entities;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Repositories
@@ -15,22 +16,26 @@ namespace API.Repositories
     {
         private readonly CelestialDbContext _context;
 
-        public UserRepository(CelestialDbContext context)
+        private readonly UserManager<AppUser> _userManager;
+
+        public UserRepository(CelestialDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+
+            _userManager = userManager;
         }
 
-        public  async Task AddToLiked(LikedArticle likedArticle)
+        public  async Task AddToLiked(int userId, int articleId)
         {
 
              var user = await _context.Users
-                .Where(u => u.Id == likedArticle.UserId)
+                .Where(u => u.Id == userId)
                 .Include(u => u.LikedArticles)
                 .FirstOrDefaultAsync();
 
-            var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == likedArticle.ArticleId);
+            var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == articleId);
 
-            if (!user.LikedArticles.Any(b => b.ArticleId == likedArticle.ArticleId))
+            if (!user.LikedArticles.Any(b => b.ArticleId == articleId))
             {
                 user.LikedArticles.Add(new LikedArticle()
                 {
@@ -53,7 +58,7 @@ namespace API.Repositories
                 .FirstOrDefaultAsync();
 
 
-            return user.Articles
+            var articles = user.Articles
                 .Select(a => new Article()
                 {
                     Id = a.Id,
@@ -65,6 +70,9 @@ namespace API.Repositories
                     ImageUrl = a.ImageUrl,
                     AppUserId = a.AppUserId
                 }).ToList();
+
+            if (articles != null) { return articles; }
+            return new List<Article>() ;
         }
 
         public async Task RemoveFromLiked(int articleId, int userId)
@@ -90,7 +98,7 @@ namespace API.Repositories
         }
         public void UpdateUserProfile(AppUser appUser)
         {
-            _context.Entry(appUser).State = EntityState.Modified; ;
+             _context.Entry(appUser).State = EntityState.Modified;
         }
 
     }

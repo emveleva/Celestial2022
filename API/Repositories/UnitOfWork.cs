@@ -20,7 +20,7 @@ namespace API.Data
          
         }
 
-        public IUserRepository UserRepository => new UserRepository(_context);
+        public IUserRepository UserRepository => new UserRepository(_context, _userManager);
         public IEditorRepository EditorRepository => new EditorRepository(_context);
         public IArticleRepository ArticleRepository => new ArticleRepository(_context);
 
